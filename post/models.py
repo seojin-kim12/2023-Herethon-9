@@ -9,7 +9,7 @@ class category(Enum):
     침입 = '침입'
 
 # Create your models here.
-class post(models.Model):
+class Post(models.Model):
     title = models.CharField(max_length=50)
   #  author = models.ForeignKey(User, on_delete=models.CASCADE)
     date = models.DateField(default=timezone.now())
