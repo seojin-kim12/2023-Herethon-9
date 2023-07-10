@@ -5,3 +5,4 @@ from .models import Post
 admin.site.register(Post)
 
 #변경사항
+#지혜 변경사항
