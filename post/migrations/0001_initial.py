@@ -9,7 +9,7 @@ class Migration(migrations.Migration):
 
     initial = True
 
-    dependencies = [
+    dependencies = [#의존성(상속받는부분)
     ]
 
     operations = [
