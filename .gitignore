@@ -1,5 +1,5 @@
-# 디폴트 무시된 파일
+# .gitignore
 /shelf/
 /workspace.xml
-/myvenv
-/.idea
+/myvenv/
+/.idea/
