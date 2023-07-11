@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from .models import *
 # Create your views here.
 
+# 글 생성 함수
 def create(request):
     if request.method == 'POST':
         post = Post()
