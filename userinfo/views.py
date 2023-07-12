@@ -4,6 +4,7 @@ from .models import *
 
 # Create your views here.
 
+# info create 함수
 def info(request):
     if request.method == 'POST':
         # 사용자 정보 저장
@@ -39,7 +40,7 @@ def info(request):
         guarInfo.guard_residenceNumberEnd = request.POST.get('guard_residenceNumberEnd')
         guarInfo.phoneNumber = request.POST.get('guard_phone')
         guarInfo.save()
-        return redirect('info')    
+        return redirect('info-list')    
     
     context = {
         'tooth_choices': UserInfo._meta.get_field('tooth').choices,
@@ -47,5 +48,20 @@ def info(request):
         'blood_choices': UserInfo._meta.get_field('blood').choices,
         'scar_choices': UserInfo._meta.get_field('scar').choices
     }
+    
+    return render(request, "html/info_create.html", {'context':context})
 
-    return render(request, "html/info.html", {'context':context})
+# info 작성 후 값 제시 함수
+def userinfo(request):
+    # 단일 객체 아니므로 objects.all 사용
+    userinfo = UserInfo.objects.all()
+    photoinfo = Photo.objects.all()
+    guardinfo = GuardianInfo.objects.all()
+
+    context = {
+        'userinfo' : userinfo, 
+        'photoinfo' : photoinfo, 
+        'guardinfo' : guardinfo
+    }
+
+    return render(request, "html/info.html", {'context': context})
