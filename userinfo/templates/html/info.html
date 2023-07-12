@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <!-- 다중이미지 업로드 enctype 추가-->
+    <form action="{% url 'info' %}" method="post" enctype="multipart/form-data">
+      {% csrf_token %}
+      <lable for="name">이름</lable>
+      <input type="text" name="name_box" /><br />
+      <lable for="residenceNumber">주민번호</lable>
+      <input type="text" name="residenceNumberStart" />-<input
+        type="text"
+        name="residenceNumberEnd"
+      /><br />
+      <lable for="height">신장</lable>
+      <input type="text" name="height_box" /><br />
+      <lable for="weight">체중</lable>
+      <input type="text" name="weight_box" /><br />
+      <label for="tooth">치아상태</label>
+      <select name="tooth_option">
+        {% for tooth_value, tooth_name in context.tooth_choices %}
+        <option value="{{ tooth_name }}">{{ tooth_value }}</option>
+        {% endfor %}
+      </select>
+      <label for="hair">두발상태</label>
+      <select name="hair_option">
+        {% for hair_value, hair_name in context.hair_choices %}
+        <option value="{{ hair_name }}">{{ hair_value }}</option>
+        {% endfor %}
+      </select>
+      <label for="blood">혈액형</label>
+      <select name="blood_option">
+        {% for blood_value, blood_name in context.blood_choices %}
+        <option value="{{ blood_name }}">{{ blood_value }}</option>
+        {% endfor %}
+      </select>
+      <label for="scar">흉터</label>
+      <select name="scar_option">
+        {% for scar_value, scar_name in context.scar_choices %}
+        <option value="{{ scar_name }}">{{ scar_value }}</option>
+        {% endfor %}</select
+      ><br />
+      <lable for="feature">특이사항</lable>
+      <input type="textarea" name="feature_box" />
+      <!-- 다중 이미지 선택 옵션 multiple -->
+      <input type="file" name="imgs" multiple /><br />
+
+      <!-- 보호자 정보 입력-->
+
+      <h3>보호자 정보</h3>
+      <lable for="name">이름</lable>
+      <input type="text" name="guard_name" /><br />
+      <lable for="residenceNumber">주민번호</lable>
+      <input type="text" name="guard_residenceNumberStart" />-<input
+        type="text"
+        name="guard_residenceNumberEnd"
+      /><br />
+      <lable for="phonenum">휴대전화 번호</lable>
+      <input type="text" name="guard_phone" /><br />
+      <input type="submit" value="Submit" />
+    </form>
+  </body>
+</html>

@@ -13,6 +13,6 @@ class category(Enum):
 class Post(models.Model):
     title = models.CharField(max_length=50)
   #  author = models.ForeignKey(User, on_delete=models.CASCADE)
-    date = models.DateField(default=timezone.now())
+  #  date = models.DateField(default=timezone.now())
     body = models.CharField(max_length=200)
     category = models.CharField(max_length=20, choices=[(status.value, status.name) for status in category])
