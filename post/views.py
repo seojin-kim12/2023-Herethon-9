@@ -24,10 +24,16 @@ def create(request,customUser_id):
     return render(request, "html/post.html",  {'customUser_id': customUser_id})
 
 
-
 def post_list(request):
-    # 모든 게시글 가져오기
-    posts = Post.objects.all()
+    keyword = request.GET.get('q')
+
+    if keyword:
+        # 검색어가 있는 경우
+        posts = Post.objects.filter(title__icontains=keyword)
+    else:
+        # 검색어가 없는 경우 (전체 조회)
+        posts = Post.objects.all()
+
     page = request.GET.get('page')
 
     # 한 페이지에 게시글 2개를 보여줌
@@ -35,7 +41,7 @@ def post_list(request):
 
     try:
         page_obj = paginator.page(page)
-    except PageNotAnInteger: # 첫번째 페이지 접속시 나는 오류 해결
+    except PageNotAnInteger:  # 첫번째 페이지 접속시 나는 오류 해결
         page = 1
         page_obj = paginator.page(page)
     except EmptyPage:
@@ -51,13 +57,14 @@ def post_list(request):
     if rightIndex > paginator.num_pages:
         rightIndex = paginator.num_pages
 
-    custom_range = range(leftIndex, rightIndex+1)
+    custom_range = range(leftIndex, rightIndex + 1)
 
     context = {
         'posts': posts,
         'custom_range': custom_range,
         'page_obj': page_obj,
         'paginator': paginator,
+        'keyword': keyword,
     }
 
     return render(request, 'html/post_list.html', context)

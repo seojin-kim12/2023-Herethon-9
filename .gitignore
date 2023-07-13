@@ -10,3 +10,7 @@
 /accounts/__pyache__/
 /userinfo/__pyache__/
 /wofety/__pyache__/
+
+# Byte-compiled / optimized / DLL files
+
+__pycache__/
