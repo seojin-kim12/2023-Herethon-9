@@ -7,7 +7,8 @@
 </head>
 <body>
     <h1>게시글 작성</h1>
-    <form action="{% url 'create' %}" method="post">
+    <form action="{% url 'create' customUser_id=customUser_id %}" method="post">
+
         {% csrf_token %}
         <label for="title">제목</label>
         <input type="text" name="title" required><br>

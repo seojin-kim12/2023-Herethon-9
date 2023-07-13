@@ -1,19 +1,28 @@
 from django.shortcuts import render, redirect
 from django.shortcuts import render, redirect, get_object_or_404
 from .models import Post, Comment
+from accounts.models import CustomUser
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth import get_user_model
+
+@login_required
+def create(request,customUser_id):
+    print(customUser_id)
+    user =get_object_or_404(CustomUser, pk=customUser_id)
+    customUser_id=customUser_id
 
 
-def create(request):
     if request.method == 'POST':
         post = Post()
         post.title = request.POST['title']
         post.body = request.POST['body']
         post.category = request.POST['category']
+        post.author = user
         post.save()
-        return redirect("create")
+        return render(request, "html/post.html", {'customUser_id': customUser_id})
+    return render(request, "html/post.html",  {'customUser_id': customUser_id})
 
-    return render(request, "html/post.html")
 
 
 def post_list(request):
@@ -54,18 +63,21 @@ def post_list(request):
     return render(request, 'html/post_list.html', context)
 
 
-def post_detail(request, post_id):
+def post_detail(request, post_id, customUser_id):
     post = get_object_or_404(Post, pk=post_id)
     post_id = post_id
     page = request.GET.get('page')
+    user =get_object_or_404(CustomUser, pk=customUser_id)
+    customUser_id=customUser_id
 
     # 댓글 생성
     if request.method == 'POST':
         comment = Comment()
         comment.post = post
         comment.text = request.POST['text']
+        comment.author = user
         comment.save()
-        return redirect('post_detail', post_id=post_id)
+        return redirect('post_detail', post_id=post_id, customUser_id= customUser_id)
 
 
     # 댓글 페이징 처리
@@ -101,6 +113,7 @@ def post_detail(request, post_id):
         'custom_range': custom_range,
         'page_obj': page_obj,
         'paginator': paginator,
+        'customUser_id': customUser_id,
     }
 
     return render(request, 'html/post_detail.html', context)

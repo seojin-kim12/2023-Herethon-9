@@ -13,7 +13,7 @@
     <hr>
     <ul>
         {% for comment in page_obj %}
-        <h3>유저명</h3>
+        <h3>{{comment.author}}</h3>
         <h4>{{ comment.text }}</h4>
         <br/>
     {% endfor %}
@@ -43,7 +43,7 @@
     <br/>
     <br/>
     <h3>댓글 작성</h3>
-    <form action="{% url 'post_detail' post_id=post.id %}" method="post">
+    <form action="{% url 'post_detail' post_id=post.id customUser_id=customUser_id %}" method="post">
         {% csrf_token %}
         <label for="text">댓글 내용</label>
         <input type ="text" name="text" required>

@@ -13,6 +13,7 @@
                 <h2>{{ post.title }}</h2>
                 <p>작성 시간: {{ post.datetime|date:"Y년 F j일" }} {% if post.datetime|time:"G" < 12 %}오전{% else %}오후{% endif %} {{ post.datetime|time:"g시 i분" }}</p>
                 <p>카테고리: {{ post.category }}</p>
+                <p>작성자 : {{post.author}}</p>
             </li>
         {% endfor %}
     </ul>

@@ -14,6 +14,8 @@ class CustomUserManager(BaseUserManager):
         user.set_password(password)
         user.save()
         return user
+    def get_username(self, custom_id): #호환성 위해 추가 -혜승
+        return custom_id
 
 class CustomUser(AbstractBaseUser):
     custom_id = models.CharField(max_length=100, unique=True)
