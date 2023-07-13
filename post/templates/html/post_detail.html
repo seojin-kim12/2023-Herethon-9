@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>게시글 상세조회</title>
+</head>
+<body>
+    <h1>{{ post.category }}</h1>
+    <h2>{{ post.title }}</h2>
+    <p>{{ post.body }}</p>
+
+    <hr>
+    <ul>
+        {% for comment in page_obj %}
+        <h3>유저명</h3>
+        <h4>{{ comment.text }}</h4>
+        <br/>
+    {% endfor %}
+    </ul>
+    <div>
+        {% if page_obj.has_other_pages %}
+            <ul style="display:flex;list-style: none;">
+                {% if page_obj.has_previous %}
+                    <li style="margin:3px;"><a style="text-decoration:none; color: black;" href="?page={{ page_obj.previous_page_number }}">&#10094; Prev</a></li>
+                {% endif %}
+
+                {% for page in page_obj.paginator.page_range %}
+                    {% if page == page_obj.number %}
+                        <li style="margin:3px;"><a style="text-decoration:none; color: red;" href="?page={{ page }}">{{ page }}</a></li>
+                    {% else %}
+                        <li style="margin:3px;"><a style="text-decoration:none; color: blue;" href="?page={{ page }}">{{ page }}</a></li>
+                    {% endif %}
+                {% endfor %}
+
+                {% if page_obj.has_next %}
+                    <li style="margin:3px;"><a style="text-decoration:none; color: black;" href="?page={{ page_obj.next_page_number }}">&#10095; Next</a></li>
+                {% endif %}
+            </ul>
+        {% endif %}
+    </div>
+
+    <br/>
+    <br/>
+    <h3>댓글 작성</h3>
+    <form action="{% url 'post_detail' post_id=post.id %}" method="post">
+        {% csrf_token %}
+        <label for="text">댓글 내용</label>
+        <input type ="text" name="text" required>
+
+        <input type = "submit" value="댓글 작성">
+    </form>
+
+
+</body>
+</html>

@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<head></head>
+<body>
+    <div class="container">
+        <h1>sign up</h1>
+
+        <form method="POST" action="{%url 'signup'%}">
+            {% csrf_token %}
+            Username : <br>
+            <input name="custom_id" type="text"><br>
+            Password : <br>
+            <input name="password" type="password"><br>
+            Confirm Password : <br>
+            <input name="password2" type="password"><br>
+            Nickname : <br>
+            <input name="username" type="text"><br>
+            <br>
+            <a href='{% url "login" %}'><input type="submit" class="btn btn-primary" value="sign up"></a>
+
+        </form>
+    </div>
+</body>
