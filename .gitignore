@@ -4,3 +4,6 @@
 /myvenv/
 /.idea/
 /userinfo/migrations/
+/accounts/migrations
+/accounts/__pyache__
+/userinfo/__pyache__
