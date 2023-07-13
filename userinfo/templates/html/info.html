@@ -8,7 +8,9 @@
   <body>
     <!-- 다중이미지 업로드 enctype 추가-->
     <form action="{% url 'info' %}" method="post" enctype="multipart/form-data">
-      {% csrf_token %} {% for i in context.userinfo %}
+      {% csrf_token %} 
+    
+      {% for i in context.userinfo %}
       <lable for="name">이름</lable>
       <input type="text" value="{{i.name}}" name="name_box" /><br />
       <lable for="residenceNumber">주민번호</lable>
@@ -25,29 +27,47 @@
       <input type="text" value="{{i.height}}" name="height_box" /><br />
       <lable for="weight">체중</lable>
       <input type="text" value="{{i.weight}}" name="weight_box" /><br />
+
       <label for="tooth">치아상태</label>
       <select name="tooth_option">
-        <option value="{{ i.tooth }}">{{ i.tooth }}</option>
+        {% for tooth_value, tooth_display in context.tooth_choices %}
+        <option value="{{ tooth_value }}" {% if i.tooth == tooth_value %}selected{% endif %}>
+          {{ tooth_display }}
+        </option>
+        {% endfor %}
       </select>
       <label for="hair">두발상태</label>
       <select name="hair_option">
-        <option value="{{ i.hair }}">{{ i.hair }}</option>
+        {% for hair_value, hair_display in context.hair_choices %}
+        <option value="{{ hair_value }}" {% if i.hair == hair_value %}selected{% endif %}>
+          {{ hair_display }}
+        </option>
+        {% endfor %}
       </select>
       <label for="blood">혈액형</label>
       <select name="blood_option">
-        <option value="{{ i.blood }}">{{ i.blood }}</option>
+        {% for blood_value, blood_display in context.blood_choices %}
+        <option value="{{ blood_value }}" {% if i.blood == blood_value %}selected{% endif %}>
+          {{ blood_display }}
+        </option>
+        {% endfor %}
       </select>
       <label for="scar">흉터</label>
-      <select name="scar_option">
-        <option value="{{ i.scar }}">{{ i.scar }}</option></select
-      ><br />
+      <select name="_option">
+        {% for scar_value, scar_display in context.scar_choices %}
+        <option value="{{ scar_value }}" {% if i.scar == scar_value %}selected{% endif %}>
+          {{ scar_display }}
+        </option>
+        {% endfor %}
+      </select><br />
       <lable for="feature">특이사항</lable>
-      <input type="textarea" value="{{i.feature}}" name="feature_box" />
-      <!-- 이미지 넣는 것 로그인 적용 후 실행 -->
+      <input type="textarea" value="{{i.feature}}" name="feature_box" /></br>
 
-      {% for img in context.image %}
-      <img src="{{ img.url }}" alt="Uploaded image" />
+      {% for p in context.photo %}  <!-- context 변수로 변경 -->
+      <img src="{{p.image.url}}" width="50">
       {% endfor %}
+      {% endfor %}<br />
+
       <!-- 보호자 정보 입력-->
       {% for i in context.guardinfo %}
       <h3>보호자 정보</h3>
@@ -65,8 +85,8 @@
       /><br />
       <lable for="phonenum">휴대전화 번호</lable>
       <input type="text" value="{{i.phoneNumber}}" name="guard_phone" /><br />
-      <input type="submit" value="Submit" />
-      {% endfor %}
+      
+      {% endfor %} 
     </form>
   </body>
 </html>

@@ -1,62 +1,67 @@
 from django.db import models
 from phonenumber_field.modelfields import PhoneNumberField
 from django.core.validators import RegexValidator
+from accounts.models import *
 
-class ToothChoice(models.TextChoices):
-    NORMAL = '정상'
-    DENTURE = '틀니'
-    WISDOM_TOOTH = '뻐드렁니'
-    MOLAR = '금니'
-    SILVER_TOOTH = '은니'
-    DENTAL_BRIDGE = '의치'
-    TARTAR_TOOTH = '때운이빨'
-    IMPLANT = '임플란트'
-    OTHER = '기타'
+TOOTH_CHOICES = (
+    ('정상','정상'),
+    ('틀니', '틀니'),
+    ('뻐드렁니', '뻐드렁니'),
+    ('금니', '금니'),
+    ('은니', '은니'),
+    ('의치', '의치'),
+    ('때운이빨','때운이빨'),
+    ('임플란트','임플란트'),
+    ('기타','기타')
+)
 
-class HairChoice(models.TextChoices):
-    UNDEFINED = '미기재'
-    SHAVED = '삭발'
-    BALD = '대머리'
-    LONG_HAIR = '긴머리'
-    CURLY_LONG_HAIR = '곱슬긴머리'
-    SHORT_HAIR = '단발머리'
-    CUT_HAIR = '커트머리'
-    CURLY_SHORT_HAIR = '곱슬단발머리'
-    WIG = '가발'
-    SPORTY = '스포츠형'
-    SHORT_NATURAL_HAIR = '짧은머리(생머리)'
-    LONG_NATURAL_HAIR = '긴머리(생머리)'
-    SHORT_PERMED_HAIR = '짧은머리(펌)'
-    LONG_PERMED_HAIR = '긴머리(펌)'
-    TIED_HAIR = '묶음머리'
-    TOPKNOT = '상고머리'
-    DYED_BLEACHED = '염색/탈색'
-    BOWL_CUT = '바가지머리'
-    OTHER = '기타'
+HAIR_CHOICES = (
+    ('미기재', '미기재'),
+    ('삭발', '삭발'),
+    ('대머리', '대머리'),
+    ('긴머리', '긴머리'),
+    ('곱슬긴머리', '곱슬긴머리'),
+    ('단발머리', '단발머리'),
+    ('커트머리', '커트머리'),
+    ('곱슬단발머리', '곱슬단발머리'),
+    ('가발', '가발'),
+    ('스포츠형', '스포츠형'),
+    ('짧은머리(생머리)', '짧은머리(생머리)'),
+    ('긴머리(생머리)', '긴머리(생머리)'),
+    ('짧은머리(펌)', '짧은머리(펌)'),
+    ('긴머리(펌)', '긴머리(펌)'),
+    ('묶음머리', '묶음머리'),
+    ('상고머리', '상고머리'),
+    ('염색/탈색', '염색/탈색'),
+    ('바가지머리', '바가지머리'),
+    ('기타', '기타'),
+)
 
-class BloodChoice(models.TextChoices):
-    UNDEFINED = '미기재'
-    A_POSITIVE = 'A (RH+)'
-    B_POSITIVE = 'B (RH+)'
-    O_POSITIVE = 'O (RH+)'
-    AB_POSITIVE = 'AB (RH+)'
-    A_NEGATIVE = 'A (RH-)'
-    B_NEGATIVE = 'B (RH-)'
-    O_NEGATIVE = 'O (RH-)'
-    AB_NEGATIVE = 'AB (RH-)'
+BLOOD_CHOICES = (
+    ('미기재', '미기재'),
+    ('A (RH+)', 'A (RH+)'),
+    ('B (RH+)', 'B (RH+)'),
+    ('O (RH+)', 'O (RH+)'),
+    ('AB (RH+)', 'AB (RH+)'),
+    ('A (RH-)', 'A (RH-)'),
+    ('B (RH-)', 'B (RH-)'),
+    ('O (RH-)', 'O (RH-)'),
+    ('AB (RH-)', 'AB (RH-)'),
+)
 
-class ScarChoice(models.TextChoices):
-    UNDEFINED = '미기재'
-    HEAD = '머리'
-    FACE = '얼굴'
-    ARM = '팔'
-    HAND = '손'
-    BACK = '등'
-    TORSO = '몸통'
-    BUTTOCK = '둔부'
-    LEG = '다리'
-    FOOT = '발'
-    OTHER = '기타'
+SCAR_CHOICES = (
+    ('미기재', '미기재'),
+    ('머리', '머리'),
+    ('얼굴', '얼굴'),
+    ('팔', '팔'),
+    ('손', '손'),
+    ('등', '등'),
+    ('몸통', '몸통'),
+    ('둔부', '둔부'),
+    ('다리', '다리'),
+    ('발', '발'),
+    ('기타', '기타'),
+)
 
 class UserInfo(models.Model):
     # Nickname - will import after user registration
@@ -65,19 +70,17 @@ class UserInfo(models.Model):
     residenceNumberEnd = models.PositiveIntegerField()
     height = models.FloatField()
     weight = models.FloatField()
-    tooth = models.CharField(max_length=100, choices=ToothChoice.choices)
-    hair = models.CharField(max_length=100, choices=HairChoice.choices)
-    blood = models.CharField(max_length=100, choices=BloodChoice.choices)
-    scar = models.CharField(max_length=100, choices=ScarChoice.choices)
+    tooth = models.CharField(max_length=200, choices= TOOTH_CHOICES, null=True)
+    hair = models.CharField(max_length=200, choices= HAIR_CHOICES, null=True)
+    blood = models.CharField(max_length=200, choices= BLOOD_CHOICES, null=True)
+    scar = models.CharField(max_length=200, choices= SCAR_CHOICES, null=True)
     feature = models.TextField(blank=True)
-    image = models.ImageField(upload_to='images/', blank=True, null=True)
 
     def __str__(self):
         return self.name
 
-# 이미지 여러장 업로드 - 일대다
-class Photo(models.Model):
-    userimg = models.ForeignKey(UserInfo, on_delete=models.CASCADE, null=True)
+class Img(models.Model):
+    info = models.ForeignKey(UserInfo, on_delete=models.CASCADE, null=True)
     image = models.ImageField(upload_to='images/', blank=True, null=True)
 
 

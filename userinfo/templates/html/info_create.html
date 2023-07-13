@@ -22,33 +22,31 @@
       <input type="text" name="weight_box" /><br />
       <label for="tooth">치아상태</label>
       <select name="tooth_option">
-        {% for tooth_value, tooth_name in context.tooth_choices %}
-        <option value="{{ tooth_name }}">{{ tooth_value }}</option>
+        {% for tooth_value, tooth_display in tooth_choices %}
+        <option value="{{ tooth_value }}">{{ tooth_display }}</option>
         {% endfor %}
       </select>
       <label for="hair">두발상태</label>
       <select name="hair_option">
-        {% for hair_value, hair_name in context.hair_choices %}
-        <option value="{{ hair_name }}">{{ hair_value }}</option>
+        {% for hair_value, hair_display in hair_choices %}
+        <option value="{{ hair_value }}">{{ hair_display }}</option>
         {% endfor %}
       </select>
       <label for="blood">혈액형</label>
       <select name="blood_option">
-        {% for blood_value, blood_name in context.blood_choices %}
-        <option value="{{ blood_name }}">{{ blood_value }}</option>
+        {% for blood_value, blood_display in blood_choices %}
+        <option value="{{ blood_value }}">{{ blood_display }}</option>
         {% endfor %}
       </select>
       <label for="scar">흉터</label>
       <select name="scar_option">
-        {% for scar_value, scar_name in context.scar_choices %}
-        <option value="{{ scar_name }}">{{ scar_value }}</option>
+        {% for scar_value, scar_display in scar_choices %}
+        <option value="{{ scar_value }}">{{ scar_display }}</option>
         {% endfor %}</select
       ><br />
       <lable for="feature">특이사항</lable>
       <input type="textarea" name="feature_box" />
-      <!-- 다중 이미지 선택 옵션 multiple -->
-      <input type="file" name="imgs" multiple /><br />
-
+      <input type="file" name="imgs" multiple />
       <!-- 보호자 정보 입력-->
 
       <h3>보호자 정보</h3>
@@ -61,7 +59,7 @@
       /><br />
       <lable for="phonenum">휴대전화 번호</lable>
       <input type="text" name="guard_phone" /><br />
-      <input type="submit" value="Submit" />
+      <input type="submit" value="저장하기" />
     </form>
   </body>
 </html>
