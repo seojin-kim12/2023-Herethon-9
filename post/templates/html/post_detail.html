@@ -1,56 +1,79 @@
 <!DOCTYPE html>
+{% load static %}
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/post_detail.css' %}" />
+    
+    <!-- 폰트 설정 -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Gothic+A1&display=swap" rel="stylesheet" />
     <title>게시글 상세조회</title>
 </head>
 <body>
-    <h1>{{ post.category }}</h1>
-    <h2>{{ post.title }}</h2>
-    <p>{{ post.body }}</p>
-
-    <hr>
-    <ul>
-        {% for comment in page_obj %}
-        <h3>{{comment.author}}</h3>
-        <h4>{{ comment.text }}</h4>
-        <br/>
-    {% endfor %}
-    </ul>
-    <div>
-        {% if page_obj.has_other_pages %}
-            <ul style="display:flex;list-style: none;">
-                {% if page_obj.has_previous %}
-                    <li style="margin:3px;"><a style="text-decoration:none; color: black;" href="?page={{ page_obj.previous_page_number }}">&#10094; Prev</a></li>
-                {% endif %}
-
-                {% for page in page_obj.paginator.page_range %}
-                    {% if page == page_obj.number %}
-                        <li style="margin:3px;"><a style="text-decoration:none; color: red;" href="?page={{ page }}">{{ page }}</a></li>
-                    {% else %}
-                        <li style="margin:3px;"><a style="text-decoration:none; color: blue;" href="?page={{ page }}">{{ page }}</a></li>
-                    {% endif %}
+    <div class="container">
+        <div class="top-content">
+            <img class="logo" src="{% static 'img/logo-p.svg' %}" />
+            <div class="top-title">
+                <img class="post-icon" src="{% static 'img/post-icon.svg' %}" />
+                <img class="title" src="{% static 'img/title.svg' %}" />
+            </div>
+        </div>
+        <div class="contents">
+            <h1 class="post-category">{{ post.category }}</h1>
+            <h2 class="post-title">{{ post.title }}</h2>
+            <p class="post-body">{{ post.body }}</p>
+    
+            <ul class="comment-box">
+                {% for comment in page_obj %}
+                    <h3 class="comment-user">{{comment.author}}</h3>
+                    <h4 class="comment-text">{{ comment.text }}</h4>
                 {% endfor %}
-
-                {% if page_obj.has_next %}
-                    <li style="margin:3px;"><a style="text-decoration:none; color: black;" href="?page={{ page_obj.next_page_number }}">&#10095; Next</a></li>
-                {% endif %}
             </ul>
-        {% endif %}
+            <div>
+                {% if page_obj.has_other_pages %}
+                    <ul style="display:flex;list-style: none;" class="pages">
+                        {% if page_obj.has_previous %}
+                            <li style="margin:3px;"><a style="text-decoration:none; color: rgba(0, 0, 0, 0.50);" href="?page={{ page_obj.previous_page_number }}">&#10094; Prev</a></li>
+                        {% endif %}
+    
+                        {% for page in page_obj.paginator.page_range %}
+                            {% if page == page_obj.number %}
+                                <li style="margin:3px;"><a style="text-decoration:none; color: rgba(0, 0, 0, 0.50);" href="?page={{ page }}">{{ page }}</a></li>
+                            {% else %}
+                                <li style="margin:3px;"><a style="text-decoration:none; color: #F99738;" href="?page={{ page }}">{{ page }}</a></li>
+                            {% endif %}
+                        {% endfor %}
+    
+                        {% if page_obj.has_next %}
+                            <li style="margin:3px;"><a style="text-decoration:none; color: rgba(0, 0, 0, 0.50);" href="?page={{ page_obj.next_page_number }}">&#10095; Next</a></li>
+                        {% endif %}
+                    </ul>
+                {% endif %}
+            </div>
+    
+            <form action="{% url 'post_detail' post_id=post.id customUser_id=customUser_id %}" method="post">
+                {% csrf_token %}
+                <input type="text" name="text" required placeholder="댓글을 작성하세요." class="input-text">
+    
+                <input type="submit" value="" class="comment-button">
+            </form>
+            <!-- 하단 바 부분 -->
+        </div>
+        <div id="underBar">
+            <img id="bulb" src="{% static 'img/bulb.svg' %}" />
+            <img id="home" src="{% static 'img/home (1).svg' %}" />
+            <img id="circle" src="{% static 'img/circle.svg' %}" />
+            <img id="logo_s" src="{% static 'img/logo_s.svg' %}" />
+            <img id="edit_square" src="{% static 'img/edit_square.svg' %}" />
+            <img id="account_circle" src="{% static 'img/account_circle.svg' %}" />
+            <img src="{% static 'img/text_bulb.svg' %}" style="position: relative; left: -223px" />
+            <img src="{% static 'img/text_home.svg' %}" style="position: relative; left: -190px; top: -1px" />
+            <img src="{% static 'img/text_edit.svg' %}" style="position: relative; left: -76px" />
+            <img src="{% static 'img/text_my.svg' %}" style="position: relative; left: 304px; top: -21px" />
+        </div>
     </div>
-
-    <br/>
-    <br/>
-    <h3>댓글 작성</h3>
-    <form action="{% url 'post_detail' post_id=post.id customUser_id=customUser_id %}" method="post">
-        {% csrf_token %}
-        <label for="text">댓글 내용</label>
-        <input type ="text" name="text" required>
-
-        <input type = "submit" value="댓글 작성">
-    </form>
-
-
 </body>
 </html>

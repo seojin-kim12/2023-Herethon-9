@@ -1,65 +1,188 @@
 <!DOCTYPE html>
+{% load static %}
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>내 정보</title>
+    <link rel="stylesheet" href="{% static 'css/info_create.css' %}" />
   </head>
   <body>
-    <!-- 다중이미지 업로드 enctype 추가-->
-    <form action="{% url 'info' %}" method="post" enctype="multipart/form-data">
-      {% csrf_token %}
-      <lable for="name">이름</lable>
-      <input type="text" name="name_box" /><br />
-      <lable for="residenceNumber">주민번호</lable>
-      <input type="text" name="residenceNumberStart" />-<input
-        type="text"
-        name="residenceNumberEnd"
-      /><br />
-      <lable for="height">신장</lable>
-      <input type="text" name="height_box" /><br />
-      <lable for="weight">체중</lable>
-      <input type="text" name="weight_box" /><br />
-      <label for="tooth">치아상태</label>
-      <select name="tooth_option">
-        {% for tooth_value, tooth_display in tooth_choices %}
-        <option value="{{ tooth_value }}">{{ tooth_display }}</option>
-        {% endfor %}
-      </select>
-      <label for="hair">두발상태</label>
-      <select name="hair_option">
-        {% for hair_value, hair_display in hair_choices %}
-        <option value="{{ hair_value }}">{{ hair_display }}</option>
-        {% endfor %}
-      </select>
-      <label for="blood">혈액형</label>
-      <select name="blood_option">
-        {% for blood_value, blood_display in blood_choices %}
-        <option value="{{ blood_value }}">{{ blood_display }}</option>
-        {% endfor %}
-      </select>
-      <label for="scar">흉터</label>
-      <select name="scar_option">
-        {% for scar_value, scar_display in scar_choices %}
-        <option value="{{ scar_value }}">{{ scar_display }}</option>
-        {% endfor %}</select
-      ><br />
-      <lable for="feature">특이사항</lable>
-      <input type="textarea" name="feature_box" />
-      <input type="file" name="imgs" multiple />
-      <!-- 보호자 정보 입력-->
+    <div id="container">
+      <div id="top">
+        <div id="title">내 정보</div>
+        <div id="t_name">김멋사</div>
+        <div id="t_id">likelion</div>
+        <img id="logo" src="{% static 'img/logo_s.svg' %}" />
+        <img id="logo_b" src="{% static 'img/circle.svg' %}" />
+      </div>
+      <div id="scroll">
+        <!-- 다중이미지 업로드 enctype 추가-->
+        <form
+          action="{% url 'info' %}"
+          method="post"
+          enctype="multipart/form-data"
+        >
+          {% csrf_token %}
+          <label for="name">이름</label>
+          <input
+            type="text"
+            name="name_box"
+            class="name_box"
+            placeholder="이름을 입력해주세요."
+          />
+          <br />
+          <label for="residenceNumber">주민번호</label>
+          <div class="input-row">
+            <input
+              type="text"
+              class="residenceNumberStart"
+              name="residenceNumberStart"
+              placeholder="주민번호 앞자리"
+            />
+            <span class="divider">-</span>
+            <input
+              type="text"
+              class="residenceNumberEnd"
+              name="residenceNumberEnd"
+              placeholder="주민번호 뒷자리"
+            />
+          </div>
+          <br />
+          <div class="input-row">
+            <label for="height" class="height">신장 및</label>
+            <label for="weight">체중</label>
+          </div>
+          <div class="input-row">
+            <input
+              type="text"
+              name="height_box"
+              placeholder="신장"
+              class="height_box"
+            />
+            <span class="cm">cm</span>
+            <input
+              type="text"
+              name="weight_box"
+              placeholder="체중"
+              class="weight_box"
+            />
+            <span class="kg">kg</span>
+          </div>
+          <br />
+          <div class="input-row">
+            <label for="tooth" class="tooth">치아상태</label>
+            <label for="hair">두발상태</label>
+          </div>
+          <div class="input-row">
+            <select name="tooth_option" class="tooth_box">
+              {% for tooth_value, tooth_display in tooth_choices %}
+              <option value="{{ tooth_value }}">{{ tooth_display }}</option>
+              {% endfor %}
+            </select>
+            <select name="hair_option">
+              {% for hair_value, hair_display in hair_choices %}
+              <option value="{{ hair_value }}">{{ hair_display }}</option>
+              {% endfor %}
+            </select>
+          </div>
+          <br />
+          <div class="input-row">
+            <label for="blood" class="blood">혈액형</label>
+            <label for="scar">흉터</label>
+          </div>
+          <div class="input-row">
+            <select name="blood_option" class="blood_box">
+              {% for blood_value, blood_display in blood_choices %}
+              <option value="{{ blood_value }}">{{ blood_display }}</option>
+              {% endfor %}
+            </select>
+            <select name="scar_option">
+              {% for scar_value, scar_display in scar_choices %}
+              <option value="{{ scar_value }}">{{ scar_display }}</option>
+              {% endfor %}
+            </select>
+          </div>
+          <br />
+          <label for="feature">특이사항</label>
+          <textarea
+            name="feature_box"
+            class="feature_box"
+            placeholder="남들과 구분되는 신체적 특징이나 버릇 등 특이사항을 입력해주세요."
+          ></textarea>
 
-      <h3>보호자 정보</h3>
-      <lable for="name">이름</lable>
-      <input type="text" name="guard_name" /><br />
-      <lable for="residenceNumber">주민번호</lable>
-      <input type="text" name="guard_residenceNumberStart" />-<input
-        type="text"
-        name="guard_residenceNumberEnd"
-      /><br />
-      <lable for="phonenum">휴대전화 번호</lable>
-      <input type="text" name="guard_phone" /><br />
-      <input type="submit" value="저장하기" />
-    </form>
+          <input
+            type="file"
+            class="imgbox"
+            value="사진 업로드"
+            name="imgs"
+            multiple
+          />
+
+          <!-- 보호자 정보 입력-->
+          <h3>보호자 정보</h3>
+          <label for="name">이름</label>
+          <input
+            type="text"
+            class="name_box"
+            name="guard_name"
+            placeholder="이름을 입력해주세요."
+          />
+          <br />
+          <label for="residenceNumber">주민번호</label>
+          <div class="input-row">
+            <input
+              type="text"
+              class="residenceNumberStart"
+              name="guard_residenceNumberStart"
+              placeholder="주민번호 앞자리"
+            />
+            <span class="divider">-</span>
+            <input
+              type="text"
+              class="residenceNumberEnd"
+              name="guard_residenceNumberEnd"
+              placeholder="주민번호 뒷자리"
+            />
+          </div>
+          <br />
+          <label for="phonenum">휴대전화 번호</label>
+          <input
+            type="text"
+            class="phonenumbox"
+            name="guard_phone"
+            placeholder="휴대전화 번호를 입력해주세요."
+          />
+          <br />
+          <input type="submit" class="submit" value="저장하기" />
+        </form>
+      </div>
+      <!-- 하단 바 부분 -->
+      <div id="underBar">
+        <img id="bulb" src="{% static 'img/bulb.svg' %}" />
+        <img id="home" src="{% static 'img/home (1).svg' %}" />
+        <img id="circle" src="{% static 'img/circle.svg' %}" />
+        <img id="logo_s" src="{% static 'img/logo_s.svg' %}" />
+        <img id="edit_square" src="{% static 'img/edit_square.svg' %}" />
+        <img id="account_circle" src="{% static 'img/account_circle.svg' %}" />
+        <img
+          src="{% static 'img/text_bulb.svg' %}"
+          style="position: relative; left: -215px"
+        />
+        <img
+          src="{% static 'img/text_home.svg' %}"
+          style="position: relative; left: -182px; top: -1px"
+        />
+        <img
+          src="{% static 'img/text_edit.svg' %}"
+          style="position: relative; left: -71px"
+        />
+        <img
+          src="{% static 'img/text_my.svg' %}"
+          style="position: relative; left: 295px; top: -21px"
+        />
+      </div>
+    </div>
+    <script src="{% static 'js/info.js' %}"></script>
   </body>
 </html>

@@ -1,22 +1,101 @@
 <!DOCTYPE html>
-<head></head>
+{% load static %}
+<head>
+    <title>회원가입 페이지</title>
+    <link rel="stylesheet" href="{% static 'css/signup.css' %}" />
+    <!--폰트 설정-->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Gothic+A1&display=swap"
+        rel="stylesheet"
+    />
+</head>
 <body>
     <div class="container">
-        <h1>sign up</h1>
+        <div class="top-contents">
+            <img class="logo" src="{% static 'img/logo_signup.svg' %}" /><br />
+            <img class="signup" src="{% static 'img/signup.svg' %}" />
+        </div>
 
         <form method="POST" action="{%url 'signup'%}">
             {% csrf_token %}
-            Username : <br>
-            <input name="custom_id" type="text"><br>
-            Password : <br>
-            <input name="password" type="password"><br>
-            Confirm Password : <br>
-            <input name="password2" type="password"><br>
-            Nickname : <br>
-            <input name="username" type="text"><br>
-            <br>
-            <a href='{% url "login" %}'><input type="submit" class="btn btn-primary" value="sign up"></a>
+            <!--아이디-->
+            <img class="input-text" src="{% static 'img/signup_id.svg' %}" />
+            <input
+                name="custom_id"
+                type="text"
+                placeholder="아이디를 영문으로 입력해주세요."
+                class="input"
+            />
 
+            <!--비밀번호-->
+            <img class="input-text" src="{% static 'img/signup_pw.svg' %}" />
+            <input
+                name="password"
+                type="password"
+                placeholder="영문+숫자 8자 이상으로 설정해주세요."
+                class="input"
+            />
+
+            <!--비밀번호 확인 -->
+            <img
+                class="input-text"
+                src="{% static 'img/signup_pw_check.svg' %}"
+            />
+            <input
+                name="password2"
+                type="password"
+                placeholder="비밀번호 한 번 더 입력해주세요."
+                class="input"
+            />
+
+            <!-- 닉네임 -->
+            <img
+                class="input-text"
+                src="{% static 'img/signup_nickname.svg' %}"
+            />
+            <input
+                name="username"
+                type="text"
+                placeholder="닉네임을 한글로 입력해주세요."
+                class="input"
+            />
+
+            <a href='{% url "login" %}'
+                ><input
+                    type="submit"
+                    class="btn btn-primary"
+                    value="로그인 하기"
+            /></a>
         </form>
+        <!-- 하단 바 부분 -->
+        <div id="underBar">
+            <img id="bulb" src="{% static 'img/bulb.svg' %}" />
+            <img id="home" src="{% static 'img/home (1).svg' %}" />
+            <img id="circle" src="{% static 'img/circle.svg' %}" />
+            <img id="logo_s" src="{% static 'img/logo_s.svg' %}" />
+            <img id="edit_square" src="{% static 'img/edit_square.svg' %}" />
+            <img
+                id="account_circle"
+                src="{% static 'img/account_circle.svg' %}"
+            />
+            <img
+                src="{% static 'img/text_bulb.svg' %}"
+                style="position: relative; left: -223px"
+            />
+            <img
+                src="{% static 'img/text_home.svg' %}"
+                style="position: relative; left: -190px; top: -1px"
+            />
+            <img
+                src="{% static 'img/text_edit.svg' %}"
+                style="position: relative; left: -76px"
+            />
+            <img
+                src="{% static 'img/text_my.svg' %}"
+                style="position: relative; left: 304px; top: -21px"
+            />
+        </div>
     </div>
 </body>

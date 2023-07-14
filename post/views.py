@@ -6,12 +6,11 @@ from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import get_user_model
 
-@login_required
+
 def create(request,customUser_id):
     print(customUser_id)
     user =get_object_or_404(CustomUser, pk=customUser_id)
     customUser_id=customUser_id
-
 
     if request.method == 'POST':
         post = Post()
@@ -20,7 +19,8 @@ def create(request,customUser_id):
         post.category = request.POST['category']
         post.author = user
         post.save()
-        return render(request, "html/post.html", {'customUser_id': customUser_id})
+        return redirect('post_list')
+    
     return render(request, "html/post.html",  {'customUser_id': customUser_id})
 
 

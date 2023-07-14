@@ -1,0 +1,625 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>메인 페이지</title>
+    <link rel="stylesheet" href="{% static 'css/main.css' %}" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+  </head>
+  <style>
+    @font-face {
+      font-family: "Pretendard-Regular";
+      src: url("https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff")
+        format("woff");
+      font-weight: 400;
+      font-style: normal;
+    }
+    #container {
+      position: relative;
+      max-width: 360px;
+      max-height: 740px;
+      margin: 0px auto;
+      background: linear-gradient(to top, #f4eee9, #f2f2f2);
+    }
+    #scroll {
+      height: 612px;
+      overflow-y: auto;
+      overflow-x: hidden;
+    }
+    #logo {
+      margin-top: 10px;
+      margin-left: 20px;
+    }
+    #prevention {
+      margin-top: 20px;
+    }
+    #preventionBox {
+      position: relative;
+      width: 322px;
+      height: 118px;
+      background: #fbf6f2;
+      box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+      border-radius: 10px;
+      margin: 0 auto;
+    }
+    #text {
+      /* 누군가 뒤따라오고 있어요! */
+      position: absolute;
+      width: 240px;
+      height: 20px;
+      left: -5px;
+      top: 15px;
+
+      font-family: "Gothic A1";
+      font-style: normal;
+      font-weight: 700;
+      font-size: 16px;
+      line-height: 21px;
+      /* or 131% */
+      text-align: center;
+      letter-spacing: -0.32px;
+
+      color: #000000;
+
+      mix-blend-mode: darken;
+      text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    }
+    #orangebox {
+      position: relative;
+      width: 130px;
+      height: 23px;
+      margin-left: -15px;
+      top: 50px;
+
+      background: rgba(254, 151, 56, 0.71);
+      box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+      border-radius: 10px;
+      transform: rotate(-4.11deg);
+
+      /* 글씨체 */
+      position: relative;
+      left: calc(50% - 102.45px / 2 - 76.27px);
+      padding-top: 4px;
+
+      font-family: "Gothic A1";
+      font-style: normal;
+      font-weight: 400;
+      font-size: 12px;
+      line-height: 21px;
+      /* or 175% */
+      text-align: center;
+      letter-spacing: -0.32px;
+
+      color: #000000;
+
+      mix-blend-mode: darken;
+      transform: rotate(-4.11deg);
+    }
+    #whitebox {
+      position: relative;
+      width: 130px;
+      height: 23px;
+      margin-left: -12px;
+      top: 49px;
+
+      background: rgba(243, 236, 229, 0.71);
+      box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+      border-radius: 10px;
+      transform: rotate(3.93deg);
+      /* 소리를 질러야하나? */
+      position: relative;
+      left: calc(50% - 102.45px / 2 - 18.54px);
+      padding-top: 4px;
+
+      font-family: "Gothic A1";
+      font-style: normal;
+      font-weight: 400;
+      font-size: 12px;
+      line-height: 21px;
+      /* or 175% */
+      text-align: center;
+    }
+    #face {
+      position: relative;
+      left: 205px;
+      top: -33px;
+    }
+    #btn {
+      margin-top: 20px;
+    }
+    #button1 {
+      position: absolute;
+      width: 10px;
+      height: 10px;
+      left: 155px;
+      top: 140px;
+
+      background: #fe9738;
+      box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.25);
+      border-radius: 10px;
+    }
+    #button2 {
+      position: absolute;
+      width: 10px;
+      height: 10px;
+      left: 174px;
+      top: 140px;
+
+      background: #d9d9d9;
+      box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.25);
+      border-radius: 10px;
+    }
+    #button3 {
+      position: absolute;
+      width: 10px;
+      height: 10px;
+      left: 194px;
+      top: 140px;
+
+      background: #d9d9d9;
+      box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.25);
+
+      border-radius: 10px;
+    }
+    #siren {
+      position: absolute;
+      width: 156px;
+      height: 163px;
+      left: calc(50% - 156px / 2 - 84.5px);
+      top: 70px;
+      margin-left: 5px;
+
+      background: rgba(255, 255, 255, 0.53);
+      box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+      border-radius: 10px;
+      margin-top: -40px;
+    }
+    #siren_text {
+      /* 긴급 알림 */
+      position: absolute;
+      width: 69px;
+      height: 20px;
+      top: 55px;
+      left: 40px;
+
+      font-family: "Gothic A1";
+      font-style: normal;
+      font-weight: 700;
+      font-size: 16px;
+      line-height: 21px;
+      /* or 131% */
+      text-align: center;
+      letter-spacing: -0.32px;
+
+      color: #000000;
+
+      mix-blend-mode: darken;
+    }
+    #siren_btn {
+      box-sizing: border-box;
+
+      position: absolute;
+      width: 96px;
+      height: 21px;
+      top: 92px;
+      left: 25px;
+
+      background: rgba(255, 255, 255, 0.38);
+      border: 1px solid #9c9b9b;
+      border-radius: 10px;
+    }
+    #msg_btn {
+      box-sizing: border-box;
+      position: absolute;
+      width: 96px;
+      height: 21px;
+      top: 122px;
+      left: 25.5px;
+      background: rgba(255, 255, 255, 0.38);
+      border: 1px solid #9c9b9b;
+      border-radius: 10px;
+    }
+    #community {
+      position: absolute;
+      width: 156px;
+      height: 163px;
+      left: calc(50% - 156px / 2 + 83.5px);
+      top: 70px;
+      margin-left: 4px;
+
+      background: rgba(255, 255, 255, 0.53);
+      box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+      border-radius: 10px;
+      margin-top: -40px;
+    }
+    #community_text {
+      /* 익명 사고 접수 커뮤니티 */
+      position: absolute;
+      width: 101px;
+      height: 20px;
+      top: 60px;
+      left: 25px;
+
+      font-family: "Gothic A1";
+      font-style: normal;
+      font-weight: 700;
+      font-size: 16px;
+      line-height: 21px;
+      /* or 131% */
+      text-align: center;
+      letter-spacing: -0.32px;
+
+      color: #000000;
+
+      mix-blend-mode: darken;
+    }
+    #community_btn {
+      box-sizing: border-box;
+
+      position: absolute;
+      width: 96px;
+      height: 21px;
+      top: 120px;
+      left: 29px;
+
+      background: rgba(255, 255, 255, 0.38);
+      border: 1px solid #9c9b9b;
+      border-radius: 10px;
+    }
+    #map {
+      border-radius: 10px;
+    }
+    .overlay {
+      position: absolute;
+      background-color: rgba(255, 255, 255, 0.9);
+      padding: 10px;
+      z-index: 1;
+      height: 20px;
+      box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+      border-radius: 10px;
+    }
+    .overlay-title {
+      font-weight: bold;
+      margin-bottom: 5px;
+    }
+    .overlay-info {
+      margin-bottom: 5px;
+      margin-top: -5px;
+      text-align: center;
+      font-size: 12px;
+    }
+    #state {
+      font-weight: bold;
+      font-family: "Pretendard-Regular";
+      color: #fe4b12;
+    }
+    #info-name {
+      position: absolute;
+      width: 189px;
+      height: 21px;
+      left: calc(50% - 189px / 2 - 56px);
+      top: 420px;
+
+      font-family: "Gothic A1";
+      font-style: normal;
+      font-weight: 700;
+      font-size: 16px;
+      line-height: 21px;
+      /* identical to box height, or 131% */
+      text-align: center;
+      letter-spacing: -0.32px;
+
+      color: #fe9738;
+
+      mix-blend-mode: darken;
+    }
+    #underBar {
+      position: relative;
+      width: 360px;
+      height: 68px;
+      background: #f2f2f2;
+      border-top: 1px solid rgba(0, 0, 0, 0.15);
+      border-radius: 20px 20px 0px 0px;
+    }
+    #bulb {
+      position: relative;
+      left: 35px;
+      top: -12px;
+    }
+    #home {
+      position: relative;
+      left: 60px;
+      top: -13px;
+    }
+    #circle {
+      position: relative;
+      left: 85px;
+      top: 5px;
+    }
+    #logo_s {
+      position: relative;
+      left: 27px;
+      top: -7px;
+    }
+    #edit_square {
+      width: 28px;
+      position: relative;
+      left: 53px;
+      top: -16px;
+    }
+    #account_circle {
+      width: 29px;
+      position: relative;
+      left: 80px;
+      top: -13px;
+    }
+  </style>
+  <body>
+    <div id="container">
+      <img id="logo" src="{% static 'img/logo.svg' %}" />
+
+      <!--스크롤바 부분-->
+      <div id="scroll">
+        <!--예방책 부분-->
+        <div id="prevention" style="position: relative">
+          <div id="preventionBox">
+            <div id="text"></div>
+            <div id="orangebox"></div>
+            <div id="whitebox"></div>
+            <img id="face" src="{% static 'img/face.svg' %}" />
+            <img
+              src="{% static 'img/question-s.svg' %}"
+              style="position: absolute; margin-top: -30px; margin-left: 170px"
+            />
+            <img
+              src="{% static 'img/question-l.svg' %}"
+              style="position: absolute; margin-top: -29px; margin-left: 176px"
+            />
+          </div>
+          <div id="btn">
+            <span id="button1" onclick="btn1Click()"></span>
+            <span id="button2" onclick="btn2Click()"></span>
+            <span id="button3" onclick="btn3Click()"></span>
+          </div>
+        </div>
+        <!--긴급알림, 익명 사고 접수 커뮤니티-->
+        <div style="position: relative">
+          <span id="siren">
+            <img
+              src="{% static 'img/siren.svg' %}"
+              style="position: relative; top: 17px; left: 60px"
+            />
+            <div id="siren_text">긴급 알림</div>
+            <button id="siren_btn">
+              <img
+                src="{% static 'img/siren_text.svg' %}"
+                style="margin-top: 3px"
+              />
+            </button>
+            <button id="msg_btn">
+              <img
+                src="{% static 'img/recording_text.svg' %}"
+                style="margin-top: 3px"
+              />
+            </button>
+          </span>
+          <span id="community">
+            <img
+              src="{% static 'img/message.svg' %}"
+              style="position: relative; top: 17px; left: 60px"
+            />
+            <div id="community_text">익명 사고<br />접수 커뮤니티</div>
+            <button id="community_btn">
+              <img
+                src="{% static 'img/sub_text.svg' %}"
+                style="margin-top: 3px"
+              />
+            </button>
+          </span>
+        </div>
+        <!-- 카카오 맵 api -->
+        <div
+          id="map"
+          style="width: 320px; height: 230px; top: 220px; left: 20px"
+        ></div>
+
+        <!-- json 파일 정보 -->
+        <div id="info-box" style="margin-top: 20px"></div>
+
+        <!-- 카카오 맵 api -->
+        <script src="https://dapi.kakao.com/v2/maps/sdk.js?appkey=32c156d387fdb66c7b70a18f4e30fa4e&libraries=services"></script>
+        <script>
+          var mapContainer = document.getElementById("map");
+          var mapOption = {
+            center: new kakao.maps.LatLng(37.4351300343, 126.881576892), // 카카오 맵 초기 중심 위치
+            level: 3,
+          };
+
+          var map = new kakao.maps.Map(mapContainer, mapOption);
+
+          var convenience_json = JSON.parse(`{{ convenience_json|escapejs }}`);
+          console.log(convenience_json);
+
+          // convenience_json을 반복하여 각 편의점의 위치를 표시합니다.
+          var overlays = []; // 오버레이 배열 선언
+
+          var infoBox = document.getElementById("info-box");
+          convenience_json.forEach(function (store) {
+            var name = store.name;
+            var state = store.state;
+            var address = store.address;
+
+            // 주소를 좌표로 변환하여 마커를 생성하고 맵에 추가
+            var geocoder = new kakao.maps.services.Geocoder();
+            geocoder.addressSearch(address, function (result, status) {
+              if (status === kakao.maps.services.Status.OK) {
+                // 사용자 위치를 표시하는 마커 이미지를 생성
+                var userMarkerImage = new kakao.maps.MarkerImage(
+                  "/static/img/woman.svg",
+                  new kakao.maps.Size(48, 59),
+                  {
+                    offset: new kakao.maps.Point(13, 35),
+                  }
+                );
+
+                // 사용자 위치의 원하는 좌표를 설정
+                var userPosition = new kakao.maps.LatLng(
+                  37.4790648,
+                  126.852197
+                );
+
+                // 사용자 위치 마커를 생성하고 맵에 추가
+                var userMarker = new kakao.maps.Marker({
+                  position: userPosition,
+                  map: map,
+                  title: "사용자 위치",
+                  image: userMarkerImage,
+                });
+
+                // 맵을 사용자 위치로 이동
+                map.setCenter(userPosition);
+
+                // json파일의 가게들 마커 이미지를 생성
+                var markerImage = new kakao.maps.MarkerImage(
+                  "/static/img/mark.svg",
+                  new kakao.maps.Size(29, 40),
+                  {
+                    offset: new kakao.maps.Point(13, 35),
+                  }
+                );
+
+                var marker = new kakao.maps.Marker({
+                  position: new kakao.maps.LatLng(result[0].y, result[0].x),
+                  map: map,
+                  title: name,
+                  image: markerImage, // 변경된 마커 이미지를 적용합니다.
+                });
+
+                // 마커를 클릭했을 때 상세 정보를 표시하는 오버레이를 생성합니다.
+                var overlayContent =
+                  '<div class="overlay">' +
+                  '<div class="overlay-content">' +
+                  '<div class="overlay-info">' +
+                  name +
+                  "<br>" +
+                  "<span id='state'>" +
+                  state +
+                  "</span>" +
+                  "</div>" +
+                  "</div>" +
+                  "</div>";
+
+                // 마커 클릭 이벤트 리스너를 등록하여 오버레이를 표시합니다.
+                kakao.maps.event.addListener(marker, "click", function () {
+                  var overlay = new kakao.maps.CustomOverlay({
+                    content: overlayContent,
+                    position: marker.getPosition(),
+                    yAnchor: 1,
+                  });
+                  overlay.setMap(map);
+                  overlays.push(overlay); // 오버레이 배열에 추가
+                });
+
+                // 정보 상자에 정보 추가
+                var infoItem = document.createElement("div");
+                infoItem.className = "info-item";
+
+                // info-name 요소 생성 및 스타일 적용
+                var infoName = document.createElement("div");
+                infoName.className = "info-name";
+                infoName.textContent = name;
+                infoName.style.position = "absolute";
+                infoName.style.width = "300px";
+                infoName.style.height = "21px";
+                infoName.style.left = "15px";
+                infoName.style.fontFamily = "'Gothic A1'";
+                infoName.style.fontStyle = "normal";
+                infoName.style.fontWeight = "700";
+                infoName.style.fontSize = "16px";
+                infoName.style.lineHeight = "21px";
+                infoName.style.textAlign = "left";
+                infoName.style.letterSpacing = "-0.32px";
+                infoName.style.color = "#FE9738";
+                infoName.style.mixBlendMode = "darken";
+                infoName.style.marginTop = "10px";
+
+                // info-address 요소 생성 및 스타일 적용
+                var infoAddress = document.createElement("div");
+                infoAddress.className = "info-address";
+                infoAddress.textContent = address;
+                infoAddress.style.position = "absolute";
+                infoAddress.style.width = "295px";
+                infoAddress.style.height = "3px";
+                infoAddress.style.left = "15px";
+                infoAddress.style.top = "35px";
+                infoAddress.style.fontFamily = "'Gothic A1'";
+                infoAddress.style.fontStyle = "normal";
+                infoAddress.style.fontSize = "12px";
+                infoAddress.style.lineHeight = "21px";
+                infoAddress.style.textAlign = "left";
+                infoAddress.style.letterSpacing = "-0.32px";
+                infoAddress.style.color = "black";
+                infoAddress.style.mixBlendMode = "darken";
+
+                // infoItem에 infoName과 infoAddress 추가
+                infoItem.appendChild(infoName);
+                infoItem.appendChild(infoAddress);
+
+                infoItem.style.position = "relative";
+                infoItem.style.width = "320px";
+                infoItem.style.height = "80px";
+                infoItem.style.left = "15px";
+                infoItem.style.top = "220px";
+                infoItem.style.background = "rgba(255, 255, 255, 0.5)";
+                infoItem.style.boxShadow = "0px 4px 4px rgba(0, 0, 0, 0.25)";
+                infoItem.style.borderRadius = "10px";
+                infoItem.style.marginBottom = "15px";
+                infoBox.appendChild(infoItem);
+              }
+            });
+          });
+
+          // 맵 클릭 이벤트 리스너를 등록하여 모든 오버레이를 닫습니다.
+          kakao.maps.event.addListener(map, "click", function () {
+            for (var i = 0; i < overlays.length; i++) {
+              overlays[i].setMap(null);
+            }
+          });
+        </script>
+      </div>
+
+      <!-- 하단 바 부분 -->
+      <div id="underBar">
+        <a href="{% url 'sol' %}"><img id="bulb" src="{% static 'img/bulb.svg' %}" /></a>
+        <a href="{% url 'main' %}"><img id="home" src="{% static 'img/home (1).svg' %}" /></a>
+        <img id="circle" src="{% static 'img/circle.svg' %}" />
+        <img id="logo_s" src="{% static 'img/logo_s.svg' %}" />
+        <a href="{% url 'post_list' %}"><img id="edit_square" src="{% static 'img/edit_square.svg' %}" /></a>
+        <a href="{% url 'info' %}"><img id="account_circle" src="{% static 'img/account_circle.svg' %}" /></a>
+        <img
+          src="{% static 'img/text_bulb.svg' %}"
+          style="position: relative; left: -223px"
+        />
+        <img
+          src="{% static 'img/text_home.svg' %}"
+          style="position: relative; left: -190px; top: -1px"
+        />
+        <img
+          src="{% static 'img/text_edit.svg' %}"
+          style="position: relative; left: -76px"
+        />
+        <img
+          src="{% static 'img/text_my.svg' %}"
+          style="position: relative; left: 304px; top: -21px"
+        />
+      </div>
+    </div>
+    <script src="{% static 'js/main.js' %}"></script>
+  </body>
+</html>

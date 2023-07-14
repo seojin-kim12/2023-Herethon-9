@@ -1,0 +1,229 @@
+#container {
+  position: relative;
+  max-width: 360px;
+  max-height: 740px;
+  margin: 0px auto;
+  background: linear-gradient(to top, #f4eee9, #f2f2f2);
+}
+
+#scroll {
+  height: 699px;
+  overflow-y: auto;
+}
+
+/* 하단바 설정 */
+#underBar {
+  position: relative;
+  width: 360px;
+  height: 68px;
+  background: #f2f2f2;
+  border-top: 1px solid rgba(0, 0, 0, 0.15);
+  border-radius: 20px 20px 0px 0px;
+}
+#bulb {
+  position: relative;
+  left: 35px;
+  top: -12px;
+}
+#home {
+  position: relative;
+  left: 60px;
+  top: -13px;
+}
+#circle {
+  position: relative;
+  left: 85px;
+  top: 5px;
+}
+#logo_s {
+  position: relative;
+  left: 27px;
+  top: -7px;
+}
+#edit_square {
+  width: 28px;
+  position: relative;
+  left: 53px;
+  top: -16px;
+}
+#account_circle {
+  width: 29px;
+  position: relative;
+  left: 80px;
+  top: -13px;
+}
+/* 하단바 끝 */
+
+#logo {
+  margin-top: 10px;
+  margin-left: 20px;
+}
+
+#top-app {
+  display: flex;
+}
+
+.Line_1 {
+  display: flex;
+  align-items: center;
+
+  width: 290px;
+  height: 0px;
+  border-bottom: 0.5px solid rgba(0, 0, 0, 0.3);
+}
+
+#top-box {
+  display: flex;
+  flex-direction: column;
+  margin-left: 25px;
+}
+
+.box {
+  /* 박스 그림자 및 크기 설정 */
+  position: relative;
+  width: 300px;
+  height: 323px;
+  flex-shrink: 0;
+
+  background: rgba(255, 255, 255, 0.5);
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 10px;
+
+  margin-bottom: 25px;
+}
+
+.top-contents {
+  color: #000;
+  font-family: "Gothic A1";
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 10px;
+  letter-spacing: -0.32px;
+}
+
+#guide-title {
+  font-size: 15px;
+  font-weight: 1000;
+  margin-bottom: 20px;
+}
+
+.box-contents {
+  /* 전체 박스들 display 설정 */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* 이모지 칸 관련 css */
+.emo-contents {
+  width: 300px;
+  height: 130px;
+}
+
+#text {
+  /* 누군가 뒤따라오고 있어요! */
+  position: absolute;
+  width: 190px;
+  height: 20px;
+  margin-top: 15px;
+  margin-left: 15px;
+
+  font-family: "Gothic A1";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 21px;
+  letter-spacing: -0.32px;
+
+  color: #000000;
+  white-space: nowrap;
+}
+
+#orangebox {
+  position: relative;
+  width: 130px;
+  height: 23px;
+  margin-left: -15px;
+  top: 50px;
+
+  background: rgba(254, 151, 56, 0.71);
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 10px;
+  transform: rotate(-4.11deg);
+
+  /* 글씨체 */
+  position: relative;
+  left: calc(50% - 102.45px / 2 - 76.27px);
+  padding-top: 4px;
+
+  font-family: "Gothic A1";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 21px;
+  /* or 175% */
+  text-align: center;
+  letter-spacing: -0.32px;
+
+  color: #000000;
+
+  mix-blend-mode: darken;
+  transform: rotate(-4.11deg);
+}
+#whitebox {
+  position: relative;
+  width: 130px;
+  height: 23px;
+  margin-left: -12px;
+  top: 49px;
+
+  background: rgba(243, 236, 229, 0.71);
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 10px;
+  transform: rotate(3.93deg);
+  /* 소리를 질러야하나? */
+  position: relative;
+  left: calc(50% - 102.45px / 2 - 18.54px);
+  padding-top: 4px;
+
+  font-family: "Gothic A1";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 21px;
+  /* or 175% */
+  text-align: center;
+}
+#face {
+  position: relative;
+  left: 190px;
+  top: -33px;
+}
+
+.Line_2 {
+  display: flex;
+  align-items: center;
+
+  width: 270px;
+  height: 0px;
+  border-bottom: 0.5px solid rgba(0, 0, 0, 0.3);
+
+  margin: 0px 10px 20px;
+}
+
+.text-contents {
+  /* 세부 대처 방안 */
+  display: flex;
+  flex-direction: column;
+  margin: 0px 15px;
+
+  color: #000;
+  text-align: center;
+  font-family: "Gothic A1";
+  font-size: 10px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 5px;
+  letter-spacing: -0.32px;
+}

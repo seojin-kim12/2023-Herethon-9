@@ -1,58 +1,91 @@
 <!DOCTYPE html>
-<html lang="en">
+{% load static %}
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/post_list.css' %}" />
+    
+    <!-- 폰트 설정 -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Gothic+A1&display=swap" rel="stylesheet" />
+    
     <title>전체 글 목록</title>
 </head>
 <body>
-    <h1>전체 글 목록</h1>
-    <ul>
-        <form method="GET" action="{% url 'post_list' %}">
-            <input type="text" name="q" placeholder="검색어를 입력하세요">
-            <button type="submit">검색</button>
-        </form>
-
-        {% if keyword %}
-            <h2>검색 결과: "{{ keyword }}"</h2>
-        {% endif %}
-
-        <ul>
-            {% for post in page_obj %}
-                <li>
-                    <h2>{{ post.title }}</h2>
-                    <p>작성 시간: {{ post.datetime|date:"Y년 F j일" }} {% if post.datetime|time:"G" < 12 %}오전{% else %}오후{% endif %} {{ post.datetime|time:"g시 i분" }}</p>
-                    <p>카테고리: {{ post.category }}</p>
-                    <p>작성자: {{ post.author }}</p>
-                </li>
-            {% empty %}
-                <li>검색 결과가 없습니다.</li>
-            {% endfor %}
-        </ul>
-    </ul>
-
-    <br/>
-    <br/>
-    <div>
-        {% if page_obj.has_other_pages %}
-            <ul style="display:flex;list-style: none;">
-                {% if page_obj.has_previous %}
-                    <li style="margin:3px;"><a style="text-decoration:none; color: black;" href="?page={{ page_obj.previous_page_number }}">&#10094; Prev</a></li>
-                {% endif %}
-
-                {% for page in paginator.page_range %}
-                    {% if page == page_obj.number %}
-                        <li style="margin:3px;"><a style="text-decoration:none; color: red;" href="?page={{ page }}">{{ page }}</a></li>
-                    {% else %}
-                        <li style="margin:3px;"><a style="text-decoration:none; color: blue;" href="?page={{ page }}">{{ page }}</a></li>
-                    {% endif %}
+    <div class="container">
+        <div class="top-content">
+            <img class="logo" src="{% static 'img/logo-p.svg' %}" />
+            <div class="top-title">
+                <img class="post-icon" src="{% static 'img/post-icon.svg' %}" />
+                <img class="title" src="{% static 'img/title.svg' %}" />
+            </div>
+    
+            <div class="Line"></div>
+            <img class="p1" src="{% static 'img/p1.svg' %}" />
+            <img class="p2" src="{% static 'img/p2.svg' %}" />
+        </div>
+        <ul class="main-content">
+            <form method="GET" action="{% url 'post_list' %}" class="search">
+                <input type="text" name="q" placeholder="키워드를 입력하세요" class="search-input">
+                <button type="submit" class="search-button">!</button>
+            </form>
+    
+            {% if keyword %}
+                <h2>검색 결과: "{{ keyword }}"</h2>
+            {% endif %}
+    
+            <ul class = "post-list">
+                {% for post in page_obj %}
+                    <li class="content-box">
+                        <div class="left-content"> 
+                            <div class="blank"></div>
+                            <h2 class = "post-title">{{ post.title }}</h2>
+                            <p class = "post-datetime"> {{ post.datetime|date:"Y년 F j일" }} {% if post.datetime|time:"G" < 12 %}오전{% else %}오후{% endif %} {{ post.datetime|time:"g시 i분" }}</p>
+                            <p class = "post-author"> {{ post.author }}</p>
+                        </div>
+                        <p class = "post-category">{{ post.category }}</p>
+                    </li>
+                {% empty %}
+                    <li>검색 결과가 없습니다.</li>
                 {% endfor %}
-
-                {% if page_obj.has_next %}
-                    <li style="margin:3px;"><a style="text-decoration:none; color: black;" href="?page={{ page_obj.next_page_number }}">&#10095; Next</a></li>
-                {% endif %}
             </ul>
-        {% endif %}
+        </ul>
+   
+        <div>
+            {% if page_obj.has_other_pages %}
+                <ul style="display:flex;list-style: none;" class="pages">
+                    {% if page_obj.has_previous %}
+                        <li class="prev-page" style="margin:3px;"><a style="text-decoration:none; color: rgba(0, 0, 0, 0.50);" href="?page={{ page_obj.previous_page_number }}">&#10094; Prev</a></li>
+                    {% endif %}
+    
+                    {% for page in paginator.page_range %}
+                        {% if page == page_obj.number %}
+                            <li class="left-page" style="margin:3px;"><a style="text-decoration:none; color: rgba(0, 0, 0, 0.50);" href="?page={{ page }}">{{ page }}</a></li>
+                        {% else %}
+                            <li class="now-page" style="margin:3px;"><a style="text-decoration:none; color: #F99738;" href="?page={{ page }}">{{ page }}</a></li>
+                        {% endif %}
+                    {% endfor %}
+    
+                    {% if page_obj.has_next %}
+                        <li class="next-page" style="margin:3px;"><a style="text-decoration:none; color: rgba(0, 0, 0, 0.50);" href="?page={{ page_obj.next_page_number }}">&#10095; Next</a></li>
+                    {% endif %}
+                </ul>
+            {% endif %}
+        </div>
+    
+        <!-- 하단 바 부분 -->
+        <div id="underBar">
+            <img id="bulb" src="{% static 'img/bulb.svg' %}" />
+            <img id="home" src="{% static 'img/home (1).svg' %}" />
+            <img id="circle" src="{% static 'img/circle.svg' %}" />
+            <img id="logo_s" src="{% static 'img/logo_s.svg' %}" />
+            <img id="edit_square" src="{% static 'img/edit_square.svg' %}" />
+            <img id="account_circle" src="{% static 'img/account_circle.svg' %}" />
+            <img src="{% static 'img/text_bulb.svg' %}" style="position: relative; left: -223px" />
+            <img src="{% static 'img/text_home.svg' %}" style="position: relative; left: -190px; top: -1px" />
+            <img src="{% static 'img/text_edit.svg' %}" style="position: relative; left: -76px" />
+            <img src="{% static 'img/text_my.svg' %}" style="position: relative; left: 304px; top: -21px" />
+        </div>
     </div>
 </body>
 </html>

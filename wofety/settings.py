@@ -42,6 +42,9 @@ INSTALLED_APPS = [
     'phonenumber_field',
     'accounts',
     'post',
+    'accident_solution',
+    'main',
+    'stt',
 ]
 
 MIDDLEWARE = [
@@ -136,3 +139,4 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 # media file에 대한 URL prefix
 MEDIA_URL = '/media/'
+
