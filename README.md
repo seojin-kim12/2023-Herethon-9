@@ -19,5 +19,8 @@ WOFETY
 5. 녹음, 기록 기능
 6. 익명 신고 게시판
 
-
-![python](https://github.com/2023-HERETHON/2023-Herethon-9/assets/127821462/e113f7bd-f312-49a0-a364-4e35e1ff7398)
+<div align="center">
+   <img src="https://img.shields.io/badge/Java-007396?style=flat&logo=Java&logoColor=white" />
+   <img src="https://img.shields.io/badge/HTML5-E34F26?style=flat&logo=HTML5&logoColor=white" />
+   <img src="https://img.shields.io/badge/CSS3-1572B6?style=flat&logo=CSS3&logoColor=white" />
+</div>
