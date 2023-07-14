@@ -24,3 +24,9 @@ WOFETY
    <img src="https://img.shields.io/badge/HTML5-E34F26?style=flat&logo=HTML5&logoColor=white" />
    <img src="https://img.shields.io/badge/CSS3-1572B6?style=flat&logo=CSS3&logoColor=white" />
 </div>
+
+<div align="center">
+   <img src="https://github.com/2023-HERETHON/2023-Herethon-9/assets/127821462/98864ea9-ecfb-40aa-80d0-7e5a1d43a0b8" />
+   <img src="https://github.com/2023-HERETHON/2023-Herethon-9/assets/127821462/58e22a6b-b8af-44c9-aae3-25b76bedc930)" />
+</div>
+
