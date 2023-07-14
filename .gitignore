@@ -1,0 +1,17 @@
+
+/shelf/
+/workspace.xml
+/myvenv/
+/.idea/
+/post/migrations/
+/post/__pyache__/
+/userinfo/migrations/
+/accounts/migrations/
+/accounts/__pyache__/
+/userinfo/__pyache__/
+/wofety/__pyache__/
+/accident_solution/migrations/
+
+# Byte-compiled / optimized / DLL files
+
+__pycache__/

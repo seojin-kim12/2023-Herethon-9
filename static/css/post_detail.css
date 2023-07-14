@@ -1,0 +1,182 @@
+.container {
+  position: relative;
+  max-width: 360px;
+  max-height: 740px;
+  margin: 0px auto;
+  background: linear-gradient(to top, #f4eee9, #f2f2f2);
+}
+
+
+.top-content {
+  margin-left: 17px;
+}
+
+.top-title {
+  display: flex;
+  align-items: center;
+
+}
+
+.contents {
+  margin-left: 17px;
+}
+
+/* 글 안내  */
+.post-category {
+  width: 57px;
+  height: 28px;
+  left: calc(50% - 57px / 2 - 134px);
+  top: 156px;
+
+  background: rgba(254, 151, 56, 0.5);
+  box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.25);
+  border-radius: 10px;
+
+  border-radius: 10px;
+  color: #000;
+  text-align: center;
+  font-family: "Gothic A1";
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 21px; /* 175% */
+  letter-spacing: -0.32px;
+
+  padding-top: 10px;
+}
+
+.post-title {
+  width: 322px;
+  height: 33px;
+  left: calc(50% - 322px / 2 - 1.5px);
+  top: 197px;
+
+  background: rgba(255, 255, 255, 0.5);
+  box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.25);
+  border-radius: 10px;
+  color: #fe9738;
+  text-align: center;
+  font-family: "Gothic A1";
+  font-size: 15px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 21px; /* 140% */
+  letter-spacing: -0.32px;
+
+  padding-top: 10px;
+}
+
+.post-body {
+  width: 322px;
+  height: 290px;
+  left: calc(50% - 322px / 2 - 1.5px);
+  top: 243px;
+
+  background: rgba(255, 255, 255, 0.5);
+  box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.25);
+  border-radius: 10px;
+  color: #000;
+  text-align: center;
+  font-family: "Gothic A1";
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 21px; /* 175% */
+  letter-spacing: -0.32px;
+
+  padding-top: 10px;
+}
+
+/* 댓글 내용 */
+.comment-box {
+  padding: 0;
+}
+
+.comment-user {
+  color: #000;
+  font-family: "Gothic A1";
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 21px;
+  letter-spacing: -0.32px;
+
+  margin : 0;
+}
+
+.comment-text {
+  color: rgba(0, 0, 0, 0.70);
+  font-family: "Gothic A1";
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 21px; 
+  letter-spacing: -0.32px;
+
+  margin : 0;
+}
+
+.input-text {
+  width: 322px;
+  height: 38px;
+  flex-shrink: 0;
+
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.50);
+  box-shadow: 0px 2px 2px 0px rgba(0, 0, 0, 0.25);
+
+  border: none;
+}
+
+.comment-button {
+  border: none;
+  background: transparent;
+}
+
+/* 하단 페이지 창 */
+.pages {
+  margin-left: 142px;
+  padding: 0;
+}
+
+/* 하단바 설정 */
+#underBar {
+  position: relative;
+  width: 360px;
+  height: 68px;
+  background: #f2f2f2;
+  border-top: 1px solid rgba(0, 0, 0, 0.15);
+  border-radius: 20px 20px 0px 0px;
+}
+#bulb {
+  position: relative;
+  left: 35px;
+  top: -12px;
+}
+#home {
+  position: relative;
+  left: 60px;
+  top: -13px;
+}
+#circle {
+  position: relative;
+  left: 85px;
+  top: 5px;
+}
+#logo_s {
+  position: relative;
+  left: 27px;
+  top: -7px;
+}
+#edit_square {
+  width: 28px;
+  position: relative;
+  left: 53px;
+  top: -16px;
+}
+#account_circle {
+  width: 29px;
+  position: relative;
+  left: 80px;
+  top: -13px;
+}

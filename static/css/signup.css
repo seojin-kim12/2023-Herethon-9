@@ -1,0 +1,112 @@
+.container {
+  position: relative;
+  max-width: 360px;
+  max-height: 740px;
+  margin: 0px auto;
+  background: linear-gradient(to top, #f4eee9, #f2f2f2);
+}
+
+/* 상위 컨텐츠  */
+.logo {
+  margin-top: 117px;
+  margin-left: 20px;
+}
+
+.signup {
+  margin: 8px 0 41px 25px;
+}
+
+/* form  */
+form {
+  margin-left: 23px;
+}
+
+.input-text {
+  margin: 0 0 10px 0;
+}
+
+.input {
+  width: 310px;
+  height: 31px;
+  flex-shrink: 0;
+  margin-bottom: 20px;
+
+  border: 1px solid rgba(0, 0, 0, 0.5);
+  border-radius: 10px;
+  background-color: transparent;
+
+  color: #000;
+  font-family: "Gothic A1";
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  letter-spacing: -0.32px;
+}
+
+.input::placeholder {
+  color: rgba(0, 0, 0, 0.3);
+  padding-left: 10px;
+}
+
+.btn.btn-primary {
+  width: 303px;
+  height: 35px;
+  margin-bottom: 56px;
+  margin-top: 56px;
+  flex-shrink: 0;
+
+  border-radius: 10px;
+  background: rgba(255, 146, 45, 0.7);
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+  border: none;
+
+  color: #000;
+  text-align: center;
+  font-family: "Gothic A1";
+  font-size: 15px;
+  font-style: normal;
+  font-weight: 400;
+  letter-spacing: -0.32px;
+}
+
+/* 하단바 설정 */
+#underBar {
+  position: relative;
+  width: 360px;
+  height: 68px;
+  background: #f2f2f2;
+  border-top: 1px solid rgba(0, 0, 0, 0.15);
+  border-radius: 20px 20px 0px 0px;
+}
+#bulb {
+  position: relative;
+  left: 35px;
+  top: -12px;
+}
+#home {
+  position: relative;
+  left: 60px;
+  top: -13px;
+}
+#circle {
+  position: relative;
+  left: 85px;
+  top: 5px;
+}
+#logo_s {
+  position: relative;
+  left: 27px;
+  top: -7px;
+}
+#edit_square {
+  width: 28px;
+  position: relative;
+  left: 53px;
+  top: -16px;
+}
+#account_circle {
+  width: 29px;
+  position: relative;
+  left: 80px;
+  top: -13px;
+}

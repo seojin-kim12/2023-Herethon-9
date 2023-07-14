@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+{% load static %}
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Speech to Text</title>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css"
+    />
+    <style>
+      #container {
+        position: relative;
+        max-width: 360px;
+        height: 740px;
+        margin: 0px auto;
+        background: linear-gradient(to top, #f4eee9, #f2f2f2);
+      }
+      button {
+        padding: 8px;
+      }
+      #message {
+        color: #996600;
+      }
+      .textWrapper {
+        width: 800px;
+        margin: 0 auto;
+        display: flex;
+        flex-direction: row;
+      }
+      .textbox {
+        height: 100px;
+        border: 1px solid #d3d3d3;
+        flex: 1;
+        margin: 5px 15px;
+        border-radius: 6px;
+        text-align: left;
+        padding: 16px;
+      }
+      #speech {
+        position: relative;
+        width: 130px;
+        height: 28px;
+        top: 15px;
+        left: calc(50% - 130px / 2 - 94.5px);
+        border: none;
+
+        background: rgba(254, 151, 56, 0.71);
+        box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+        border-radius: 10px;
+      }
+      #stop {
+        position: relative;
+        width: 130px;
+        height: 28px;
+        top: 15px;
+        margin-left: -130px;
+        left: calc(50% - 130px / 2 + 53.5px);
+        border: none;
+
+        background: rgba(254, 151, 56, 0.71);
+        box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+        border-radius: 10px;
+      }
+      #scroll {
+        height: 612px;
+        overflow-y: auto;
+        overflow-x: hidden;
+      }
+      #underBar {
+        position: relative;
+        width: 360px;
+        height: 68px;
+        top: 61px;
+        background: #f2f2f2;
+        border-top: 1px solid rgba(0, 0, 0, 0.15);
+        border-radius: 20px 20px 0px 0px;
+      }
+      #bulb {
+        position: relative;
+        left: 35px;
+        top: -12px;
+      }
+      #home {
+        position: relative;
+        left: 60px;
+        top: -13px;
+      }
+      #circle {
+        position: relative;
+        left: 85px;
+        top: 5px;
+      }
+      #logo_s {
+        position: relative;
+        left: 27px;
+        top: -7px;
+      }
+      #edit_square {
+        width: 28px;
+        position: relative;
+        left: 53px;
+        top: -16px;
+      }
+      #account_circle {
+        width: 29px;
+        position: relative;
+        left: 80px;
+        top: -13px;
+      }
+      #box {
+        position: absolute;
+        width: 323px;
+        height: 380px;
+        left: calc(50% - 321px / 2 - 2px);
+        top: 270px;
+
+        background: #fbf6f2;
+        box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+        border-radius: 10px;
+        overflow-y: auto;
+        overflow-x: hidden;
+      }
+      #s_text {
+        position: absolute;
+        width: 280px;
+        height: 20px;
+        margin-left: 15px;
+        top: 10px;
+
+        font-family: "Gothic A1";
+        font-style: normal;
+        font-weight: 700;
+        font-size: 14px;
+        line-height: 21px;
+        /* or 150% */
+        text-align: left;
+        letter-spacing: -0.32px;
+
+        color: #000000;
+
+        mix-blend-mode: darken;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="container">
+      <!--스크롤바 부분-->
+      <div id="scroll">
+        <img
+          src="{% static 'img/logo.svg' %}"
+          style="margin-top: 10px; margin-left: 15px"
+        /><br />
+        <img src="{% static 'img/record.svg' %}" style="margin-left: 15px" />
+        <img
+          src="{% static 'img/title.svg' %}"
+          style="position: relative; top: -16px"
+        /><br />
+        <img
+          src="{% static 'img/line.svg' %}"
+          style="position: relative; top: -15px; left: 15px"
+        /><br />
+        <img
+          src="{% static 'img/subtitle.svg' %}"
+          style="position: relative; top: -5px; left: 15px"
+        /><br />
+        <img
+          src="{% static 'img/text.svg' %}"
+          style="position: relative; left: 18px"
+        /><br />
+
+        <button id="speech" onclick="speech_to_text(); speechToast();">
+          <img src="{% static 'img/start_text.svg' %}" style="" />
+        </button>
+        <button id="stop" onclick="stop(); stopToast();">
+          <img src="{% static 'img/stop_text.svg' %}" style="" />
+        </button>
+        <script src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+        <script>
+          function speechToast() {
+            Toastify({
+              text: "녹음이 시작되었습니다",
+              duration: 1000,
+              newWindow: true,
+              close: false, // X 아이콘 숨기기
+              position: "center", // 토스트 위치를 수직 중앙에 표시
+              style: {
+                background: "rgba(254, 151, 56, 0.71)",
+                "box-shadow": "0px 4px 4px rgba(0, 0, 0, 0.25)",
+                "border-radius": "10px",
+                "font-family": "Gothic A1",
+                "font-style": "normal",
+                "margin-top": "15px",
+                "line-height": "6px", // 토스트 메시지의 글자 위치를 2px 위로 조정
+                color: "#000000",
+                height: "5px", // 토스트 메시지의 높이 수정
+                width: "322px", // 토스트 메시지의 너비 수정
+                "font-size": "12px", // 토스트 메시지의 글자 크기 조정
+              },
+            }).showToast();
+          }
+          function stopToast() {
+            Toastify({
+              text: "녹음이 끝났습니다",
+              duration: 1000,
+              newWindow: true,
+              close: false,
+              position: "center",
+              style: {
+                background: "rgba(254, 151, 56, 0.71)",
+                "box-shadow": "0px 4px 4px rgba(0, 0, 0, 0.25)",
+                "border-radius": "10px",
+                "font-family": "Gothic A1",
+                "font-style": "normal",
+                "margin-top": "15px",
+                "line-height": "6px", // 토스트 메시지의 글자 위치를 2px 위로 조정
+                color: "#000000",
+                height: "5px", // 토스트 메시지의 높이 수정
+                width: "322px", // 토스트 메시지의 너비 수정
+                "font-size": "12px", // 토스트 메시지의 글자 크기 조정
+              },
+            }).showToast();
+          }
+        </script>
+
+        <!-- Add a container to display the results -->
+        <div id="box">
+          <div id="s_text">
+            <div style="margin-bottom: 10px">오늘은 2023년 7월 15일입니다</div>
+            <div style="margin-bottom: 10px">
+              저는 지금 이문안 호수 공원 앞 입니다
+            </div>
+            <div style="margin-bottom: 10px">
+              아디다스 모자 쓴 사람이 쫓아오고 있어요
+            </div>
+            <div style="margin-bottom: 10px">어딜 도망가</div>
+            <div style="margin-bottom: 10px">살려줘요</div>
+            <div style="margin-bottom: 10px">
+              지금은 이문안 호수 공원 옆 이디야입니다
+            </div>
+            <div style="margin-bottom: 10px">이리와</div>
+            <div id="result"></div>
+          </div>
+        </div>
+
+        <script type="text/javascript">
+          var message = document.querySelector("#message");
+          var button = document.querySelector("#speech");
+          var isRecognizing = false;
+
+          if ("SpeechRecognition" in window) {
+            console.log("음성인식을 지원하는 브라우저입니다.");
+          }
+
+          try {
+            var recognition = new (window.SpeechRecognition ||
+              window.webkitSpeechRecognition ||
+              window.mozSpeechRecognition ||
+              window.msSpeechRecognition)();
+          } catch (e) {
+            console.error(e);
+          }
+
+          recognition.lang = "ko-KR";
+          recognition.interimResults = false;
+          recognition.maxAlternatives = 5;
+
+          function speech_to_text() {
+            recognition.start();
+            isRecognizing = true;
+
+            recognition.onstart = function () {
+              console.log(
+                "음성인식이 시작 되었습니다. 이제 마이크에 무슨 말이든 하세요."
+              );
+              message.innerHTML = "음성인식 시작...";
+              button.innerHTML = "Listening...";
+              button.disabled = true;
+            };
+
+            recognition.onspeechend = function () {
+              message.innerHTML = "버튼을 누르고 아무말이나 하세요.";
+              button.disabled = false;
+              button.innerHTML = "Start STT";
+            };
+
+            recognition.onresult = function (event) {
+              console.log("You said: ", event.results[0][0].transcript);
+              var resText = event.results[0][0].transcript;
+
+              var resultDiv = document.getElementById("result");
+              resultDiv.innerHTML +=
+                '<div style="margin-bottom: 10px">' + resText + "</div>";
+              resultDiv.style.position = "absolute";
+              resultDiv.style.fontFamily = "Gothic A1";
+              resultDiv.style.fontStyle = "normal";
+              resultDiv.style.fontWeight = "700";
+              resultDiv.style.fontSize = "14px";
+              resultDiv.style.lineHeight = "21px";
+              resultDiv.style.textAlign = "left";
+              resultDiv.style.marginBottom = "15px";
+
+              text_to_speech(resText);
+            };
+
+            recognition.onend = function () {
+              message.innerHTML = "버튼을 누르고 아무말이나 하세요.";
+              button.disabled = false;
+              button.innerHTML = "Start STT";
+              isRecognizing = false;
+            };
+          }
+
+          function stop() {
+            recognition.stop();
+            message.innerHTML = "버튼을 누르고 아무말이나 하세요.";
+            button.disabled = false;
+            button.innerHTML = "Start STT";
+            isRecognizing = false;
+          }
+
+          function text_to_speech(txt) {
+            if ("speechSynthesis" in window) {
+              console.log("음성합성을 지원하는 브라우저입니다.");
+            }
+
+            var msg = new SpeechSynthesisUtterance();
+            var voices = window.speechSynthesis.getVoices();
+            msg.voiceURI = "native";
+            msg.volume = 1;
+            msg.rate = 1.3;
+            msg.text = txt;
+            msg.lang = "ko-KR";
+
+            msg.onend = function (e) {
+              if (isRecognizing == false) {
+                recognition.start();
+              }
+              console.log("Finished in " + event.elapsedTime + " seconds.");
+            };
+            window.speechSynthesis.speak(msg);
+          }
+        </script>
+      </div>
+
+      <!-- 하단 바 부분 -->
+      <div id="underBar">
+        <img id="bulb" src="{% static 'img/bulb.svg' %}" />
+        <img id="home" src="{% static 'img/home (1).svg' %}" />
+        <img id="circle" src="{% static 'img/circle.svg' %}" />
+        <img id="logo_s" src="{% static 'img/logo_s.svg' %}" />
+        <img id="edit_square" src="{% static 'img/edit_square.svg' %}" />
+        <img id="account_circle" src="{% static 'img/account_circle.svg' %}" />
+        <img
+          src="{% static 'img/text_bulb.svg' %}"
+          style="position: relative; left: -223px"
+        />
+        <img
+          src="{% static 'img/text_home.svg' %}"
+          style="position: relative; left: -190px; top: -1px"
+        />
+        <img
+          src="{% static 'img/text_edit.svg' %}"
+          style="position: relative; left: -76px"
+        />
+        <img
+          src="{% static 'img/text_my.svg' %}"
+          style="position: relative; left: 304px; top: -21px"
+        />
+      </div>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>게시글 작성</title>
+    <link rel="stylesheet" href="{% static 'css/post.css' %}" />
+  </head>
+  <body>
+    <div id="container">
+      <img id="logo" src="{% static 'img/logo_s.svg' %}" />
+      <div id="scroll">
+        <div id="top">
+          <img id="post" src="{% static 'img/post_icon.svg' %}" />
+          <h3>익명 사고 접수</h3>
+        </div>
+        <div id="line"></div>
+        <div id="post_title">여러분의 사고를 신고해주세요.</div>
+        <div id="subtitle">
+          여러분들이 느낀 위협 혹은 사고를 익명으로 접수하세요! <br />
+          여러분들의 신고가 더 안전한 사회를 만듭니다.
+        </div>
+        <div id="warning">※ 접수한 신고는 수정 및 삭제가 불가능합니다.</div>
+        <form
+          action="{% url 'create' customUser_id=customUser_id %}"
+          method="post"
+        >
+          {% csrf_token %}
+
+          <div id="input-row">
+            <div class="checkbox-container">
+              <input
+                type="radio"
+                name="category"
+                value="위험"
+                id="category_위험"
+                class="checkbox-input"
+                onclick="toggleCheckbox(this)"
+              />
+              <label for="category_위험" class="checkbox-label">위험</label>
+            </div>
+
+            <div class="checkbox-container">
+              <input
+                type="radio"
+                name="category"
+                value="추행"
+                id="category_추행"
+                class="checkbox-input"
+                onclick="toggleCheckbox(this)"
+              />
+              <label for="category_추행" class="checkbox-label">추행</label>
+            </div>
+
+            <div class="checkbox-container">
+              <input
+                type="radio"
+                name="category"
+                value="폭행"
+                id="category_폭행"
+                class="checkbox-input"
+                onclick="toggleCheckbox(this)"
+              />
+              <label for="category_폭행" class="checkbox-label">폭행</label>
+            </div>
+
+            <div class="checkbox-container">
+              <input
+                type="radio"
+                name="category"
+                value="침입"
+                id="category_침입"
+                class="checkbox-input"
+                onclick="toggleCheckbox(this)"
+              />
+              <label for="category_침입" class="checkbox-label">침입</label>
+            </div>
+          </div>
+
+          <input
+            type="text"
+            name="title"
+            id="title"
+            placeholder="제목을 입력하세요."
+            required
+          />
+
+          <textarea
+            name="body"
+            id="body"
+            rows="4"
+            placeholder="본문을 입력하세요."
+            required
+          ></textarea
+          ><br />
+
+          <a href="{% url 'post_list' %}"
+            ><input type="submit" value="등록하기" id="submit"
+          /></a>
+        </form>
+      </div>
+
+      <!-- 하단 바 부분 -->
+      <div id="underBar">
+        <img id="bulb" src="{% static 'img/bulb.svg' %}" />
+        <img id="home" src="{% static 'img/home (1).svg' %}" />
+        <img id="circle" src="{% static 'img/circle.svg' %}" />
+        <img id="logo_s" src="{% static 'img/logo_s.svg' %}" />
+        <img id="edit_square" src="{% static 'img/edit_square.svg' %}" />
+        <img id="account_circle" src="{% static 'img/account_circle.svg' %}" />
+        <img
+          src="{% static 'img/text_bulb.svg' %}"
+          style="position: relative; left: -215px"
+        />
+        <img
+          src="{% static 'img/text_home.svg' %}"
+          style="position: relative; left: -182px; top: -1px"
+        />
+        <img
+          src="{% static 'img/text_edit.svg' %}"
+          style="position: relative; left: -71px"
+        />
+        <img
+          src="{% static 'img/text_my.svg' %}"
+          style="position: relative; left: 295px; top: -21px"
+        />
+      </div>
+    </div>
+    <script>
+      function toggleCheckbox(input) {
+        var checkboxes = document.querySelectorAll(".checkbox-input");
+        checkboxes.forEach(function (checkbox) {
+          checkbox.parentNode.classList.remove("selected");
+        });
+
+        if (input.checked) {
+          input.parentNode.classList.add("selected");
+        }
+      }
+    </script>
+  </body>
+</html>

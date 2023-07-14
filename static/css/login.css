@@ -1,0 +1,145 @@
+.container {
+  position: relative;
+  max-width: 360px;
+  max-height: 740px;
+  margin: 0px auto;
+  background: linear-gradient(to top, #f4eee9, #f2f2f2);
+}
+
+.logo {
+  margin: 109px 0px 0px 20px;
+}
+
+/* top contents */
+.top-contents {
+  margin-left: 28px;
+
+  color: #000;
+  font-family: "Gothic A1";
+  font-style: normal;
+  letter-spacing: -0.32px;
+}
+
+.hello {
+  font-size: 20px;
+  font-weight: 530;
+  margin-top: 13px;
+  margin-bottom: 21px;
+}
+
+.service {
+  font-size: 16px;
+  font-weight: 530;
+  margin-top: 0;
+  margin-bottom: 2px;
+}
+
+.OOFT {
+  font-size: 16px;
+  font-weight: 730;
+  margin: 0 0 83px 0;
+}
+
+/* 입력창 */
+form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.input {
+  width: 303px;
+  height: 30px;
+  flex-shrink: 0;
+
+  border-width: 0 0 1px 0;
+  border-color: rgba(0, 0, 0, 0.3);
+  background-color: transparent;
+  margin-bottom: 20px;
+
+  color: #000;
+  font-family: "Gothic A1";
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  letter-spacing: -0.32px;
+}
+
+.input::placeholder {
+  color: rgba(0, 0, 0, 0.3);
+}
+
+.signup {
+  color: #000;
+  text-decoration: none;
+  text-align: center;
+  font-family: "Gothic A1";
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  letter-spacing: -0.32px;
+  margin-top: 10px;
+  margin-bottom: 70px;
+}
+
+.btn.btn-primary {
+  width: 303px;
+  height: 35px;
+  margin-bottom: 107px;
+  flex-shrink: 0;
+
+  border-radius: 10px;
+  background: rgba(255, 146, 45, 0.7);
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+  border: none;
+
+  color: #000;
+  text-align: center;
+  font-family: "Gothic A1";
+  font-size: 15px;
+  font-style: normal;
+  font-weight: 400;
+  letter-spacing: -0.32px;
+}
+
+/* 하단바 설정 */
+#underBar {
+  position: relative;
+  width: 360px;
+  height: 68px;
+  background: #f2f2f2;
+  border-top: 1px solid rgba(0, 0, 0, 0.15);
+  border-radius: 20px 20px 0px 0px;
+}
+#bulb {
+  position: relative;
+  left: 35px;
+  top: -12px;
+}
+#home {
+  position: relative;
+  left: 60px;
+  top: -13px;
+}
+#circle {
+  position: relative;
+  left: 85px;
+  top: 5px;
+}
+#logo_s {
+  position: relative;
+  left: 27px;
+  top: -7px;
+}
+#edit_square {
+  width: 28px;
+  position: relative;
+  left: 53px;
+  top: -16px;
+}
+#account_circle {
+  width: 29px;
+  position: relative;
+  left: 80px;
+  top: -13px;
+}

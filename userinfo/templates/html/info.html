@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>내 정보 (저장 후)</title>
+    <link rel="stylesheet" href="{% static 'css/info.css' %}" />
+  </head>
+  <body>
+    <div id="container">
+      <div id="top">
+        <div id="title">내 정보</div>
+        <div id="t_name">김멋사</div>
+        <div id="t_id">likelion</div>
+        <img id="logo" src="{% static 'img/logo_s.svg' %}" />
+        <img id="logo_b" src="{% static 'img/circle.svg' %}" />
+      </div>
+      <div id="scroll">
+        <!-- 다중이미지 업로드 enctype 추가-->
+        <form action="{% url 'info' %}" method="post" enctype="multipart/form-data">
+          {% csrf_token %} 
+        
+          {% for i in context.userinfo %}
+          <lable for="name">이름</lable>
+          <input 
+            type="text" 
+            value="{{i.name}}" 
+            name="name_box" 
+            class="name_box"/>
+          <br />
+          <lable for="residenceNumber">주민번호</lable>
+          <div class="input-row">
+            <input
+              type="text"
+              class="residenceNumberStart"
+              value="{{i.residenceNumberStart}}"
+              name="residenceNumberStart"
+            />-<input
+              type="text"
+              class="residenceNumberEnd"
+              value="{{i.residenceNumberEnd}}"
+              name="residenceNumberEnd"
+            />
+          </div>
+          <br />
+          <div class="input-row">
+            <lable for="height" class="height">신장 및</lable>
+            <lable for="weight">체중</lable>
+          </div>
+          <div class="input-row">
+            <input 
+              type="text" 
+              value="{{i.height}}" 
+              name="height_box" 
+              class="height_box"
+              />
+            <span class="cm">cm</span>
+            <input 
+              type="text" 
+              value="{{i.weight}}" 
+              name="weight_box" 
+              class="weight_box"
+              />
+            <span class="kg">kg</span>
+          </div>
+          <br />
+          <div class="input-row">
+            <label for="tooth" class="tooth">치아상태</label>
+            <label for="hair">두발상태</label>
+          </div>
+          <div class="input-row">
+            <select name="tooth_option" class="tooth_box">
+              {% for tooth_value, tooth_display in context.tooth_choices %}
+              <option value="{{ tooth_value }}" {% if i.tooth == tooth_value %}selected{% endif %}>
+                {{ tooth_display }}
+              </option>
+              {% endfor %}
+            </select>
+            <select name="hair_option">
+              {% for hair_value, hair_display in context.hair_choices %}
+              <option value="{{ hair_value }}" {% if i.hair == hair_value %}selected{% endif %}>
+                {{ hair_display }}
+              </option>
+              {% endfor %}
+            </select>
+          </div>
+          <br />
+          <div class="input-row">
+            <label for="blood" class="blood">혈액형</label>
+            <label for="scar">흉터</label>
+          </div>
+          <div class="input-row">
+            <select name="blood_option" class="blood_box">
+              {% for blood_value, blood_display in context.blood_choices %}
+              <option value="{{ blood_value }}" {% if i.blood == blood_value %}selected{% endif %}>
+                {{ blood_display }}
+              </option>
+              {% endfor %}
+            </select>
+            <select name="_option">
+              {% for scar_value, scar_display in context.scar_choices %}
+              <option value="{{ scar_value }}" {% if i.scar == scar_value %}selected{% endif %}>
+                {{ scar_display }}
+              </option>
+              {% endfor %}
+            </select>
+          </div>
+          <br />
+          <lable for="feature">특이사항</lable>
+          <textarea 
+            value="{{i.feature}}" 
+            name="feature_box" 
+            class="feature_box"
+          ></textarea>
+          </br>
+
+          {% for p in context.photo %}  <!-- context 변수로 변경 -->
+          <div class="input-row">
+            <img src="{{p.image.url}}" width="50" class="imgbox">
+          </div>
+          {% endfor %}
+          {% endfor %}<br />
+
+          <!-- 보호자 정보 입력-->
+          {% for i in context.guardinfo %}
+          <h3>보호자 정보</h3>
+          <lable for="name">이름</lable>
+          <input 
+            type="text" 
+            class="name_box"
+            value="{{i.guard_name}}" 
+            name="guard_name" 
+          />
+          <br />
+          <lable for="residenceNumber">주민번호</lable>
+          <div class="input-row">
+            <input
+              type="text"
+              value="{{i.guard_residenceNumberStart}}"
+              name="guard_residenceNumberStart"
+              class="residenceNumberStart"
+            />-<input
+              type="text"
+              value="{{i.guard_residenceNumberEnd}}"
+              name="guard_residenceNumberEnd"
+              class="residenceNumberEnd"
+            />
+          </div>
+          <br />
+          <lable for="phonenum">휴대전화 번호</lable>
+          <input 
+            type="text" 
+            class="phonenumbox"
+            value="{{i.phoneNumber}}" 
+            name="guard_phone" 
+            />
+          {% endfor %} 
+        </form>
+      </div>
+      <!-- 하단 바 부분 -->
+      <div id="underBar">
+        <img id="bulb" src="{% static 'img/bulb.svg' %}" />
+        <img id="home" src="{% static 'img/home (1).svg' %}" />
+        <img id="circle" src="{% static 'img/circle.svg' %}" />
+        <img id="logo_s" src="{% static 'img/logo_s.svg' %}" />
+        <img id="edit_square" src="{% static 'img/edit_square.svg' %}" />
+        <img id="account_circle" src="{% static 'img/account_circle.svg' %}" />
+        <img
+          src="{% static 'img/text_bulb.svg' %}"
+          style="position: relative; left: -215px"
+        />
+        <img
+          src="{% static 'img/text_home.svg' %}"
+          style="position: relative; left: -182px; top: -1px"
+        />
+        <img
+          src="{% static 'img/text_edit.svg' %}"
+          style="position: relative; left: -71px"
+        />
+        <img
+          src="{% static 'img/text_my.svg' %}"
+          style="position: relative; left: 295px; top: -21px"
+        />
+      </div>
+    </div>
+  </body>
+</html>
