@@ -1,4 +1,4 @@
-# 2023-Herethon-9
+<img width="1033" alt="image" src="https://github.com/seojin-kim12/2023-Herethon-9/assets/80455266/e4313b64-33ed-4aef-8b5c-e6cf2a8e5f56"># 2023-Herethon-9
 2023 여기톤 : HERETHON 9조
 
 ![로고](https://github.com/2023-HERETHON/2023-Herethon-9/assets/127821462/8e712084-6e35-4420-a50e-f9439df904c7)
@@ -21,3 +21,13 @@ WOFETY
 ******사용 스택******
 1. 프론트 : HTML, CSS, JS
 2. 백엔드 : PYTHON, DJANGO
+
+<img width="1000" alt="image" src="https://github.com/seojin-kim12/2023-Herethon-9/assets/80455266/21a54a8a-f9bb-4e4e-b9a4-0d2737cb6886"><br/>
+<img width="1000" alt="image" src="https://github.com/seojin-kim12/2023-Herethon-9/assets/80455266/baf1ae92-1625-40bd-a279-d6610d14973c"><br/>
+<img width="1000" alt="image" src="https://github.com/seojin-kim12/2023-Herethon-9/assets/80455266/2a46ec4b-5bf9-4e9c-a6bb-52990173fa79"><br/>
+<img width="1000" alt="image" src="https://github.com/seojin-kim12/2023-Herethon-9/assets/80455266/de42c45b-0c32-4447-9b8d-3d6e578dcb76"><br/>
+<img width="1000" alt="image" src="https://github.com/seojin-kim12/2023-Herethon-9/assets/80455266/b0423eb0-5937-486b-804c-6e4956f70fef"><br/>
+<img width="1000" alt="image" src="https://github.com/seojin-kim12/2023-Herethon-9/assets/80455266/204c71ca-f868-4f35-8d6e-eacd65b4c297"><br/>
+<img width="1000" alt="image" src="https://github.com/seojin-kim12/2023-Herethon-9/assets/80455266/c608a95f-958c-42fc-8bd5-f07e22e560c4"><br/>
+<img width="1000" alt="image" src="https://github.com/seojin-kim12/2023-Herethon-9/assets/80455266/89e3369d-ac79-427f-b042-aff25b73d48f"><br/>
+
